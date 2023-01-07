@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F36FB5E2296A138700D870DC /* UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FB5E1296A138700D870DC /* UIResponder.swift */; };
 		F383C0EF294FB77300D0C766 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383C0EE294FB77300D0C766 /* AppDelegate.swift */; };
 		F383C0F1294FB77300D0C766 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383C0F0294FB77300D0C766 /* SceneDelegate.swift */; };
 		F383C0F6294FB77300D0C766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F383C0F4294FB77300D0C766 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F36FB5E1296A138700D870DC /* UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIResponder.swift; sourceTree = "<group>"; };
 		F383C0EB294FB77300D0C766 /* bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F383C0EE294FB77300D0C766 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F383C0F0294FB77300D0C766 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				F383C0F0294FB77300D0C766 /* SceneDelegate.swift */,
 				F383C0F4294FB77300D0C766 /* Main.storyboard */,
 				F3B290FE29635AB800934701 /* RegisterViewController.swift */,
+				F36FB5E1296A138700D870DC /* UIResponder.swift */,
 				F3B290FA2963445700934701 /* WelcomeViewController.swift */,
 				F3B290FC29635A9100934701 /* SignInViewController.swift */,
 				F383C0F7294FB77500D0C766 /* Assets.xcassets */,
@@ -238,6 +241,7 @@
 				F3B290FF29635AB800934701 /* RegisterViewController.swift in Sources */,
 				F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */,
 				F383C0EF294FB77300D0C766 /* AppDelegate.swift in Sources */,
+				F36FB5E2296A138700D870DC /* UIResponder.swift in Sources */,
 				F383C0F1294FB77300D0C766 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
