@@ -14,7 +14,6 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -22,8 +21,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     func validateTextFields() -> String? {
-        if nameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+        if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             return "All fields are required!"
@@ -67,7 +65,6 @@ class RegisterViewController: UIViewController {
         if error != nil {
             showError(error!)
         } else {
-            let names = nameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
@@ -75,11 +72,9 @@ class RegisterViewController: UIViewController {
                 if error != nil {
                     self.showError("Error creating user!")
                 } else {
-                    //store user data into database
-                    
+                    self.performSegue(withIdentifier: "signUpSegue", sender: nil)
                 }
             }
-            performSegue(withIdentifier: "signUpSegue", sender: nil)
         }
     }
 }
