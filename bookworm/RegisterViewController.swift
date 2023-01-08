@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 
@@ -66,9 +67,19 @@ class RegisterViewController: UIViewController {
         if error != nil {
             showError(error!)
         } else {
-            //create user and segue to sign in
-            performSegue(withIdentifier: "signInSegue", sender: nil)
+            let names = nameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+                if error != nil {
+                    self.showError("Error creating user!")
+                } else {
+                    //store user data into database
+                    
+                }
+            }
+            performSegue(withIdentifier: "signUpSegue", sender: nil)
         }
-        
     }
 }
