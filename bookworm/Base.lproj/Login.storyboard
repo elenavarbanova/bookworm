@@ -199,12 +199,23 @@
                         <outlet property="errorLabel" destination="FSQ-vT-SwC" id="MJ4-o3-d2a"/>
                         <outlet property="passwordTextField" destination="yW4-gz-LUy" id="7oG-UW-oXJ"/>
                         <outlet property="signUpButton" destination="iBG-oh-sly" id="HAJ-UM-y2K"/>
-                        <segue destination="kdK-IY-Ujt" kind="show" id="QuO-XS-x85"/>
+                        <segue destination="kdK-IY-Ujt" kind="show" identifier="signUpSegue" id="QuO-XS-x85"/>
+                        <segue destination="Ibw-3V-H5D" kind="show" identifier="signInSegue" id="DgB-jM-4he"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ywU-DV-RaQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1718" y="170"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="mjp-W8-nef">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="Ibw-3V-H5D" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uvw-aF-iFI"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JsD-ZO-62Z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2494" y="-368"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="yZv-m8-pm4">
@@ -317,40 +328,12 @@
                         <outlet property="errorLabel" destination="f4I-Ur-SxF" id="EEu-qd-UJm"/>
                         <outlet property="passwordTextField" destination="o4t-FJ-N7u" id="6en-qa-05U"/>
                         <outlet property="signInButton" destination="Rek-Af-BZq" id="MUs-GO-coX"/>
-                        <segue destination="dAd-Q5-lj4" kind="show" identifier="signInSegue" id="ppJ-3y-UzL"/>
+                        <segue destination="Ibw-3V-H5D" kind="show" identifier="signInSegue" id="RZ6-vi-aEc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9m-5N-pkm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1718.3206106870227" y="-587.32394366197184"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="mOw-GW-1zy">
-            <objects>
-                <viewController id="dAd-Q5-lj4" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Se5-r9-3Uh">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOGGED IN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0s-hb-eMs">
-                                <rect key="frame" x="119.66666666666669" y="408" width="154" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" systemColor="systemPurpleColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="xuR-XK-dtf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Y0s-hb-eMs" firstAttribute="centerX" secondItem="Se5-r9-3Uh" secondAttribute="centerX" id="oRb-Hp-BuR"/>
-                            <constraint firstItem="Y0s-hb-eMs" firstAttribute="centerY" secondItem="Se5-r9-3Uh" secondAttribute="centerY" id="z4e-qb-GPo"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="pVx-t8-KdH"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g8y-qK-bxf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2770" y="-582"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lJu-cW-Z5v">
@@ -372,7 +355,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rTC-xl-2wS"/>
+        <segue reference="QuO-XS-x85"/>
+        <segue reference="RZ6-vi-aEc"/>
         <segue reference="e4u-hK-9mh"/>
     </inferredMetricsTieBreakers>
     <resources>

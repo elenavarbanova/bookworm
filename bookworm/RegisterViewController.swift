@@ -72,7 +72,12 @@ class RegisterViewController: UIViewController {
                 if error != nil {
                     self.showError("Error creating user!")
                 } else {
-                    self.performSegue(withIdentifier: "signUpSegue", sender: nil)
+                    if Auth.auth().currentUser != nil {
+                        print("User logged!")
+                        self.performSegue(withIdentifier: "signInSegue", sender: nil)
+                    } else  {
+                        self.performSegue(withIdentifier: "signUpSegue", sender: nil)
+                    }
                 }
             }
         }
