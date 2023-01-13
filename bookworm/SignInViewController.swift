@@ -9,15 +9,15 @@ import UIKit
 import FirebaseAuth
 
 class SignInViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signInButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     func validateTextFields() -> String? {
         if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -41,11 +41,11 @@ class SignInViewController: UIViewController {
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-                if error != nil {
+                guard error == nil else {
                     self.showError("Error signing in account!")
-                } else {
-                    self.performSegue(withIdentifier: "signInSegue", sender: nil)
+                    return
                 }
+                self.performSegue(withIdentifier: "signInSegue", sender: nil)
             }
         }
     }

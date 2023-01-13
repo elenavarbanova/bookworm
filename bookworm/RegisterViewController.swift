@@ -9,16 +9,16 @@ import UIKit
 import FirebaseAuth
 
 class RegisterViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var signUpButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     func validateTextFields() -> String? {
         if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
@@ -69,15 +69,14 @@ class RegisterViewController: UIViewController {
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
-                if error != nil {
+                guard error == nil else {
                     self.showError("Error creating user!")
-                } else {
-                    if Auth.auth().currentUser != nil {
-                        print("User logged!")
-                        self.performSegue(withIdentifier: "signInSegue", sender: nil)
-                    } else  {
-                        self.performSegue(withIdentifier: "signUpSegue", sender: nil)
-                    }
+                    return
+                }
+                if Auth.auth().currentUser != nil {
+                    self.performSegue(withIdentifier: "signInSegue", sender: nil)
+                } else  {
+                    self.performSegue(withIdentifier: "signUpSegue", sender: nil)
                 }
             }
         }
