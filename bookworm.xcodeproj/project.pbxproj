@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F36FB5E5296C8E9C00D870DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36FB5E4296C8E9C00D870DC /* Main.storyboard */; };
+		F36FB5E7296C910500D870DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FB5E6296C910500D870DC /* HomeViewController.swift */; };
 		F383C0EF294FB77300D0C766 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383C0EE294FB77300D0C766 /* AppDelegate.swift */; };
 		F383C0F1294FB77300D0C766 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383C0F0294FB77300D0C766 /* SceneDelegate.swift */; };
-		F383C0F3294FB77300D0C766 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383C0F2294FB77300D0C766 /* ViewController.swift */; };
-		F383C0F6294FB77300D0C766 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F383C0F4294FB77300D0C766 /* Main.storyboard */; };
+		F383C0F6294FB77300D0C766 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F383C0F4294FB77300D0C766 /* Login.storyboard */; };
 		F383C0F8294FB77500D0C766 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F383C0F7294FB77500D0C766 /* Assets.xcassets */; };
 		F383C0FB294FB77500D0C766 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F383C0F9294FB77500D0C766 /* LaunchScreen.storyboard */; };
 		F383C103294FBA7400D0C766 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F383C102294FBA7400D0C766 /* GoogleService-Info.plist */; };
@@ -41,18 +42,25 @@
 		F383C136294FBB9900D0C766 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F383C135294FBB9900D0C766 /* FirebaseRemoteConfigSwift */; };
 		F383C138294FBB9900D0C766 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F383C137294FBB9900D0C766 /* FirebaseStorage */; };
 		F383C13A294FBB9900D0C766 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = F383C139294FBB9900D0C766 /* FirebaseStorageCombine-Community */; };
+		F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B290FA2963445700934701 /* WelcomeViewController.swift */; };
+		F3B290FD29635A9100934701 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B290FC29635A9100934701 /* SignInViewController.swift */; };
+		F3B290FF29635AB800934701 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B290FE29635AB800934701 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F36FB5E4296C8E9C00D870DC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F36FB5E6296C910500D870DC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F383C0EB294FB77300D0C766 /* bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F383C0EE294FB77300D0C766 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F383C0F0294FB77300D0C766 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F383C0F2294FB77300D0C766 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F383C0F5294FB77300D0C766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F383C0F5294FB77300D0C766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		F383C0F7294FB77500D0C766 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F383C0FA294FB77500D0C766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F383C0FC294FB77500D0C766 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F383C102294FBA7400D0C766 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F3B290FA2963445700934701 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		F3B290FC29635A9100934701 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		F3B290FE29635AB800934701 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +122,12 @@
 			children = (
 				F383C0EE294FB77300D0C766 /* AppDelegate.swift */,
 				F383C0F0294FB77300D0C766 /* SceneDelegate.swift */,
-				F383C0F2294FB77300D0C766 /* ViewController.swift */,
-				F383C0F4294FB77300D0C766 /* Main.storyboard */,
+				F383C0F4294FB77300D0C766 /* Login.storyboard */,
+				F36FB5E4296C8E9C00D870DC /* Main.storyboard */,
+				F36FB5E6296C910500D870DC /* HomeViewController.swift */,
+				F3B290FA2963445700934701 /* WelcomeViewController.swift */,
+				F3B290FE29635AB800934701 /* RegisterViewController.swift */,
+				F3B290FC29635A9100934701 /* SignInViewController.swift */,
 				F383C0F7294FB77500D0C766 /* Assets.xcassets */,
 				F383C0F9294FB77500D0C766 /* LaunchScreen.storyboard */,
 				F383C0FC294FB77500D0C766 /* Info.plist */,
@@ -215,9 +227,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F383C0FB294FB77500D0C766 /* LaunchScreen.storyboard in Resources */,
+				F36FB5E5296C8E9C00D870DC /* Main.storyboard in Resources */,
 				F383C103294FBA7400D0C766 /* GoogleService-Info.plist in Resources */,
 				F383C0F8294FB77500D0C766 /* Assets.xcassets in Resources */,
-				F383C0F6294FB77300D0C766 /* Main.storyboard in Resources */,
+				F383C0F6294FB77300D0C766 /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,21 +241,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F383C0F3294FB77300D0C766 /* ViewController.swift in Sources */,
+				F3B290FD29635A9100934701 /* SignInViewController.swift in Sources */,
+				F3B290FF29635AB800934701 /* RegisterViewController.swift in Sources */,
+				F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */,
 				F383C0EF294FB77300D0C766 /* AppDelegate.swift in Sources */,
 				F383C0F1294FB77300D0C766 /* SceneDelegate.swift in Sources */,
+				F36FB5E7296C910500D870DC /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F383C0F4294FB77300D0C766 /* Main.storyboard */ = {
+		F383C0F4294FB77300D0C766 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F383C0F5294FB77300D0C766 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		F383C0F9294FB77500D0C766 /* LaunchScreen.storyboard */ = {
@@ -375,8 +391,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNJ5B2GW9X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookworm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -391,9 +409,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tues.bookworm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -402,8 +423,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WNJ5B2GW9X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = bookworm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -418,9 +441,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tues.bookworm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
