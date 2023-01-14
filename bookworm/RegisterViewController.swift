@@ -13,14 +13,14 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
-    @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak private var errorLabel: UILabel!
+    @IBOutlet weak private var signUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func validateTextFields() -> String? {
+    private func validateTextFields() -> String? {
         if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
