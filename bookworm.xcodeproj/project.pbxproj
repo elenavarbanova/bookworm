@@ -45,6 +45,9 @@
 		F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B290FA2963445700934701 /* WelcomeViewController.swift */; };
 		F3B290FD29635A9100934701 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B290FC29635A9100934701 /* SignInViewController.swift */; };
 		F3B290FF29635AB800934701 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B290FE29635AB800934701 /* RegisterViewController.swift */; };
+		F3DA25B629787A6B00EAFB8A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F3DA25B529787A6B00EAFB8A /* Alamofire */; };
+		F3DA25BE2978989000EAFB8A /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA25BD2978989000EAFB8A /* Book.swift */; };
+		F3DA25C029789AB600EAFB8A /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA25BF29789AB600EAFB8A /* Books.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +64,8 @@
 		F3B290FA2963445700934701 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F3B290FC29635A9100934701 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		F3B290FE29635AB800934701 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F3DA25BD2978989000EAFB8A /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		F3DA25BF29789AB600EAFB8A /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F383C118294FBB9900D0C766 /* FirebaseDatabase in Frameworks */,
+				F3DA25B629787A6B00EAFB8A /* Alamofire in Frameworks */,
 				F383C126294FBB9900D0C766 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				F383C11E294FBB9900D0C766 /* FirebaseFirestore in Frameworks */,
 				F383C10A294FBB9900D0C766 /* FirebaseAnalyticsSwift in Frameworks */,
@@ -125,6 +131,8 @@
 				F383C0F4294FB77300D0C766 /* Login.storyboard */,
 				F36FB5E4296C8E9C00D870DC /* Main.storyboard */,
 				F36FB5E6296C910500D870DC /* HomeViewController.swift */,
+				F3DA25BD2978989000EAFB8A /* Book.swift */,
+				F3DA25BF29789AB600EAFB8A /* Books.swift */,
 				F3B290FA2963445700934701 /* WelcomeViewController.swift */,
 				F3B290FE29635AB800934701 /* RegisterViewController.swift */,
 				F3B290FC29635A9100934701 /* SignInViewController.swift */,
@@ -180,6 +188,7 @@
 				F383C135294FBB9900D0C766 /* FirebaseRemoteConfigSwift */,
 				F383C137294FBB9900D0C766 /* FirebaseStorage */,
 				F383C139294FBB9900D0C766 /* FirebaseStorageCombine-Community */,
+				F3DA25B529787A6B00EAFB8A /* Alamofire */,
 			);
 			productName = bookworm;
 			productReference = F383C0EB294FB77300D0C766 /* bookworm.app */;
@@ -211,6 +220,7 @@
 			mainGroup = F383C0E2294FB77300D0C766;
 			packageReferences = (
 				F383C104294FBB9900D0C766 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F3DA25B429787A6B00EAFB8A /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = F383C0EC294FB77300D0C766 /* Products */;
 			projectDirPath = "";
@@ -241,10 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3DA25BE2978989000EAFB8A /* Book.swift in Sources */,
 				F3B290FD29635A9100934701 /* SignInViewController.swift in Sources */,
 				F3B290FF29635AB800934701 /* RegisterViewController.swift in Sources */,
 				F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */,
 				F383C0EF294FB77300D0C766 /* AppDelegate.swift in Sources */,
+				F3DA25C029789AB600EAFB8A /* Books.swift in Sources */,
 				F383C0F1294FB77300D0C766 /* SceneDelegate.swift in Sources */,
 				F36FB5E7296C910500D870DC /* HomeViewController.swift in Sources */,
 			);
@@ -482,6 +494,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		F3DA25B429787A6B00EAFB8A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -619,6 +639,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F383C104294FBB9900D0C766 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		F3DA25B529787A6B00EAFB8A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3DA25B429787A6B00EAFB8A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
