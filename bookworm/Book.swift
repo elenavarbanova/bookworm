@@ -7,7 +7,10 @@
 
 import Foundation
 
-protocol Displayable {}
+protocol Displayable {
+    var titleLabelText: String { get }
+    var subtitleLabelText: String { get }
+}
 
 struct Book: Decodable {
     let key: String
@@ -30,7 +33,7 @@ extension Book: Displayable {
         title
     }
     
-    var authorNameLabelText: String {
+    var subtitleLabelText: String {
         authorName[0]
     }
 }
