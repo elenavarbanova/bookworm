@@ -49,6 +49,7 @@
 		F3DA25BE2978989000EAFB8A /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA25BD2978989000EAFB8A /* Book.swift */; };
 		F3DA25C029789AB600EAFB8A /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA25BF29789AB600EAFB8A /* Books.swift */; };
 		F3DA25C42979CC7700EAFB8A /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */; };
+		F3E3198C298079CF0070E0AA /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = F3E3198B298079CF0070E0AA /* AlamofireImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 				F3DA25B629787A6B00EAFB8A /* Alamofire in Frameworks */,
 				F383C126294FBB9900D0C766 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				F383C11E294FBB9900D0C766 /* FirebaseFirestore in Frameworks */,
+				F3E3198C298079CF0070E0AA /* AlamofireImage in Frameworks */,
 				F383C10A294FBB9900D0C766 /* FirebaseAnalyticsSwift in Frameworks */,
 				F383C106294FBB9900D0C766 /* FirebaseAnalytics in Frameworks */,
 				F383C108294FBB9900D0C766 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -192,6 +194,7 @@
 				F383C137294FBB9900D0C766 /* FirebaseStorage */,
 				F383C139294FBB9900D0C766 /* FirebaseStorageCombine-Community */,
 				F3DA25B529787A6B00EAFB8A /* Alamofire */,
+				F3E3198B298079CF0070E0AA /* AlamofireImage */,
 			);
 			productName = bookworm;
 			productReference = F383C0EB294FB77300D0C766 /* bookworm.app */;
@@ -224,6 +227,7 @@
 			packageReferences = (
 				F383C104294FBB9900D0C766 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F3DA25B429787A6B00EAFB8A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F3E3198A298079CE0070E0AA /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 			);
 			productRefGroup = F383C0EC294FB77300D0C766 /* Products */;
 			projectDirPath = "";
@@ -506,6 +510,14 @@
 				kind = branch;
 			};
 		};
+		F3E3198A298079CE0070E0AA /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -648,6 +660,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F3DA25B429787A6B00EAFB8A /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		F3E3198B298079CF0070E0AA /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3E3198A298079CE0070E0AA /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

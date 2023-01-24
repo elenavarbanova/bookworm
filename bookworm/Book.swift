@@ -8,6 +8,7 @@
 import Foundation
 
 protocol Displayable {
+    var image: String? { get }
     var titleLabelText: String { get }
     var subtitleLabelText: String { get }
 }
@@ -29,6 +30,13 @@ struct Book: Decodable {
 }
 
 extension Book: Displayable {
+    var image: String? {
+        guard let imageID = coverImage else {
+            return nil
+        }
+        return "https://covers.openlibrary.org/b/id/\(imageID)-M.jpg"
+    }
+    
     var titleLabelText: String {
         title
     }

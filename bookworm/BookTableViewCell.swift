@@ -12,4 +12,5 @@ class BookTableViewCell: UITableViewCell {
     @IBOutlet weak var bookCoverImage: UIImageView!
     @IBOutlet weak var bookTitleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    var imageID: String?
 }

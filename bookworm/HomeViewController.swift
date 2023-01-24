@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -41,7 +42,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.bookTitleLabel?.text = eachBook.titleLabelText
         cell.authorLabel?.text = eachBook.subtitleLabelText
         
-        //fetch image
+        
+        if let imageID = eachBook.image {
+            cell.imageID = imageID
+            let request = AF.request(imageID, method: .get)
+            request.responseImage { response in
+                guard let image = response.value else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    if cell.imageID == imageID {
+                        cell.bookCoverImage.image = image
+                    }
+                }
+            }
+        }
         
         return cell
     }
@@ -66,12 +81,6 @@ extension HomeViewController {
                 
                 self.items = books.allBooks
                 self.tableView.reloadData()
-                
-                print(books.allBooks.first!)
             }
     }
-    
-//    func fetchBookCover() {
-//
-//    }
 }
