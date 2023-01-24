@@ -41,7 +41,13 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.bookTitleLabel?.text = eachBook.titleLabelText
         cell.authorLabel?.text = eachBook.subtitleLabelText
         
+        //fetch image
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
     }
     
     // MARK: - UITableViewDelegate

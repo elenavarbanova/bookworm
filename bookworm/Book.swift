@@ -16,8 +16,8 @@ struct Book: Decodable {
     let key: String
     let title: String
     let coverImage: Int?
-    let authorKey: [String]
-    let authorName: [String]
+    let authorKey: [String]?
+    let authorName: [String]?
     
     enum CodingKeys: String, CodingKey {
         case key
@@ -34,6 +34,6 @@ extension Book: Displayable {
     }
     
     var subtitleLabelText: String {
-        authorName[0]
+        authorName?.formatted() ?? "Unknown author"
     }
 }
