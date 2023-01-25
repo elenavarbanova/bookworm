@@ -80,6 +80,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bookworm" largeTitleDisplayMode="always" id="KkK-6M-X6d"/>
+                    <connections>
+                        <segue destination="Ibw-3V-H5D" kind="show" identifier="loggedIn" id="vHn-Hv-2DG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -355,9 +358,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QuO-XS-x85"/>
+        <segue reference="rTC-xl-2wS"/>
         <segue reference="RZ6-vi-aEc"/>
-        <segue reference="e4u-hK-9mh"/>
+        <segue reference="nOc-kf-pXS"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="books.vertical.fill" catalog="system" width="128" height="110"/>

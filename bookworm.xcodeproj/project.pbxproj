@@ -50,6 +50,7 @@
 		F3DA25C029789AB600EAFB8A /* Books.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA25BF29789AB600EAFB8A /* Books.swift */; };
 		F3DA25C42979CC7700EAFB8A /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */; };
 		F3E3198C298079CF0070E0AA /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = F3E3198B298079CF0070E0AA /* AlamofireImage */; };
+		F3E3198E2981BB0F0070E0AA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E3198D2981BB0F0070E0AA /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		F3DA25BD2978989000EAFB8A /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		F3DA25BF29789AB600EAFB8A /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 		F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		F3E3198D2981BB0F0070E0AA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				F36FB5E4296C8E9C00D870DC /* Main.storyboard */,
 				F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */,
 				F36FB5E6296C910500D870DC /* HomeViewController.swift */,
+				F3E3198D2981BB0F0070E0AA /* ProfileViewController.swift */,
 				F3DA25BD2978989000EAFB8A /* Book.swift */,
 				F3DA25BF29789AB600EAFB8A /* Books.swift */,
 				F3B290FA2963445700934701 /* WelcomeViewController.swift */,
@@ -260,6 +263,7 @@
 			files = (
 				F3DA25BE2978989000EAFB8A /* Book.swift in Sources */,
 				F3B290FD29635A9100934701 /* SignInViewController.swift in Sources */,
+				F3E3198E2981BB0F0070E0AA /* ProfileViewController.swift in Sources */,
 				F3B290FF29635AB800934701 /* RegisterViewController.swift in Sources */,
 				F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */,
 				F3DA25C42979CC7700EAFB8A /* BookTableViewCell.swift in Sources */,
