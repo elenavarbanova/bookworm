@@ -18,14 +18,6 @@ class HomeViewController: UITableViewController {
         fetchTrendingBooks()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.setHidesBackButton(true, animated: true)
-    }
-    
-    // MARK: - UITableViewDataSource
-    
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -36,7 +28,6 @@ class HomeViewController: UITableViewController {
         let eachBook = items[indexPath.row]
         cell.bookTitleLabel?.text = eachBook.titleLabelText
         cell.authorLabel?.text = eachBook.subtitleLabelText
-        
         
         if let imageID = eachBook.image {
             cell.imageID = imageID
@@ -52,17 +43,13 @@ class HomeViewController: UITableViewController {
                 }
             }
         }
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
-    
-    // MARK: - UITableViewDelegate
 }
-
 
 extension HomeViewController {
     func fetchTrendingBooks() {
