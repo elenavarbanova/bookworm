@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class WelcomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkUserLoggedIn()
+    }
+    
+    private func checkUserLoggedIn() {
+        guard Auth.auth().currentUser != nil else {
+            return
+        }
+        self.performSegue(withIdentifier: "loggedIn", sender: nil)
     }
     
 }
