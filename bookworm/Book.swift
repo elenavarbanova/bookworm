@@ -8,6 +8,7 @@
 import Foundation
 
 protocol Displayable {
+    var image: String? { get }
     var titleLabelText: String { get }
     var subtitleLabelText: String { get }
 }
@@ -16,8 +17,8 @@ struct Book: Decodable {
     let key: String
     let title: String
     let coverImage: Int?
-    let authorKey: [String]
-    let authorName: [String]
+    let authorKey: [String]?
+    let authorName: [String]?
     
     enum CodingKeys: String, CodingKey {
         case key
@@ -29,11 +30,18 @@ struct Book: Decodable {
 }
 
 extension Book: Displayable {
+    var image: String? {
+        guard let imageID = coverImage else {
+            return nil
+        }
+        return "https://covers.openlibrary.org/b/id/\(imageID)-M.jpg"
+    }
+    
     var titleLabelText: String {
         title
     }
     
     var subtitleLabelText: String {
-        authorName[0]
+        authorName?.formatted() ?? "Unknown author"
     }
 }

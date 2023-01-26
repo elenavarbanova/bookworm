@@ -7,19 +7,15 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    
-    @IBOutlet weak var tableView: UITableView!
+class HomeViewController: UITableViewController {
     
     var items = [Displayable]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchTrendingBooks()
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,18 +26,38 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - UITableViewDataSource
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookTableViewCell
         
         let eachBook = items[indexPath.row]
         cell.bookTitleLabel?.text = eachBook.titleLabelText
         cell.authorLabel?.text = eachBook.subtitleLabelText
         
+        
+        if let imageID = eachBook.image {
+            cell.imageID = imageID
+            let request = AF.request(imageID, method: .get)
+            request.responseImage { response in
+                guard let image = response.value else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    if cell.imageID == imageID {
+                        cell.bookCoverImage.image = image
+                    }
+                }
+            }
+        }
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
     }
     
     // MARK: - UITableViewDelegate
@@ -60,12 +76,6 @@ extension HomeViewController {
                 
                 self.items = books.allBooks
                 self.tableView.reloadData()
-                
-                print(books.allBooks.first!)
             }
     }
-    
-//    func fetchBookCover() {
-//
-//    }
 }
