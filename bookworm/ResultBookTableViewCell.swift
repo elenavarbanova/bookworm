@@ -13,4 +13,11 @@ class ResultBookTableViewCell: UITableViewCell {
     @IBOutlet weak var bookTitleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     var imageID: String?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookCoverImage.image = nil
+        bookTitleLabel.text = nil
+        authorLabel.text = nil
+    }
 }
