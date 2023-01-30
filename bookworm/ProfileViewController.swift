@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
     @IBAction func signOutTappedButton(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            navigationController?.popToRootViewController(animated: true)
+            dismiss(animated: true)
         } catch {
             print(error)
         }

@@ -81,7 +81,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bookworm" largeTitleDisplayMode="always" id="KkK-6M-X6d"/>
                     <connections>
-                        <segue destination="Ibw-3V-H5D" kind="show" identifier="loggedIn" id="vHn-Hv-2DG"/>
+                        <segue destination="Ibw-3V-H5D" kind="presentation" identifier="loggedIn" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="vHn-Hv-2DG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -203,7 +203,7 @@
                         <outlet property="passwordTextField" destination="yW4-gz-LUy" id="7oG-UW-oXJ"/>
                         <outlet property="signUpButton" destination="iBG-oh-sly" id="HAJ-UM-y2K"/>
                         <segue destination="kdK-IY-Ujt" kind="show" identifier="signUpSegue" id="QuO-XS-x85"/>
-                        <segue destination="Ibw-3V-H5D" kind="show" identifier="signInSegue" id="DgB-jM-4he"/>
+                        <segue destination="Ibw-3V-H5D" kind="presentation" identifier="signInSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="DgB-jM-4he"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ywU-DV-RaQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -331,7 +331,7 @@
                         <outlet property="errorLabel" destination="f4I-Ur-SxF" id="EEu-qd-UJm"/>
                         <outlet property="passwordTextField" destination="o4t-FJ-N7u" id="6en-qa-05U"/>
                         <outlet property="signInButton" destination="Rek-Af-BZq" id="MUs-GO-coX"/>
-                        <segue destination="Ibw-3V-H5D" kind="show" identifier="signInSegue" id="RZ6-vi-aEc"/>
+                        <segue destination="Ibw-3V-H5D" kind="presentation" identifier="signInSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="RZ6-vi-aEc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9m-5N-pkm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -359,7 +359,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="rTC-xl-2wS"/>
-        <segue reference="RZ6-vi-aEc"/>
+        <segue reference="vHn-Hv-2DG"/>
         <segue reference="nOc-kf-pXS"/>
     </inferredMetricsTieBreakers>
     <resources>
