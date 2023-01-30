@@ -13,20 +13,12 @@ class SearchResultsTableViewController: UITableViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
     var items = [Displayable]()
+    var currentSearchRequest: DataRequest? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchBar()
         setupTableViewBackgroundView()
-    }
-    
-    @IBAction func refresh(_ sender: UIRefreshControl) {
-        guard let searchText = searchController.searchBar.text else {
-            return
-        }
-        fetchResultBooks(for: searchText)
-        sender.endRefreshing()
-        self.tableView.reloadData()
     }
     
     func setupSearchBar() {
@@ -84,9 +76,6 @@ class SearchResultsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
-    
-    
-    var currentSearchRequest: DataRequest? = nil
 }
 
 extension SearchResultsTableViewController: UISearchBarDelegate {
