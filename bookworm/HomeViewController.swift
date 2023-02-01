@@ -21,7 +21,7 @@ class HomeViewController: UITableViewController {
     @IBAction func refresh(_ sender: UIRefreshControl) {
         fetchTrendingBooks()
         sender.endRefreshing()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -102,12 +102,12 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
         
         request
             .validate()
-            .responseDecodable(of: ResultBooks.self, decoder: decoder) { response in
+            .responseDecodable(of: ResultBooks.self, decoder: decoder) { [weak self] response in
                 guard response.error == nil else { return }
                 guard let books = response.value else { return }
                 
-                self.items = books.resultBooks
-                self.tableView.reloadData()
+                self?.items = books.resultBooks
+                self?.tableView.reloadData()
             }
         
         
@@ -115,6 +115,6 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         items.removeAll()
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 }
