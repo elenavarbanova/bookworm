@@ -18,6 +18,12 @@ class HomeViewController: UITableViewController {
         fetchTrendingBooks()
     }
     
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        fetchTrendingBooks()
+        sender.endRefreshing()
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
