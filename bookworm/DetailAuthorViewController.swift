@@ -33,7 +33,7 @@ extension DetailAuthorViewController {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         
-        guard let authorId = (author as? NSString)?.lastPathComponent else { return }
+        let authorId = (author as NSString).lastPathComponent
         
         let request = AF.request("https://openlibrary.org/authors/\(authorId).json")
         request
