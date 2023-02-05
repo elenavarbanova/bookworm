@@ -24,6 +24,13 @@ class HomeViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let book = self.items[indexPath.row]
+        
+        self.performSegue(withIdentifier: "DetailBookSegue", sender: book)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -54,6 +61,24 @@ class HomeViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "DetailBookSegue" else {
+            return
+        }
+        guard let destination = segue.destination as? DetailBookViewController else {
+            return
+        }
+        guard let book = sender as? Displayable else {
+            return
+        }
+        
+        destination.book = book
+        destination.imageID = book.image
     }
 }
 

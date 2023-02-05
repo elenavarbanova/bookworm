@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -110,15 +111,120 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Trending Today" id="dHx-5d-zmO"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="HQY-lK-hiP">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
                             <action selector="refresh:" destination="XQF-4b-WRQ" eventType="valueChanged" id="pIa-wf-7l7"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <segue destination="9NK-1J-Aiy" kind="show" identifier="DetailBookSegue" id="Xkl-MU-Jyb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WxW-nC-UaV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-127" y="-885"/>
+        </scene>
+        <!--Detail Book View Controller-->
+        <scene sceneID="1Sd-sK-Nhz">
+            <objects>
+                <viewController id="9NK-1J-Aiy" customClass="DetailBookViewController" customModule="bookworm" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zYf-0a-bkL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-Cw-5k4">
+                                <rect key="frame" x="95.666666666666686" y="176" width="202" height="500"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="srg-qy-zP2">
+                                        <rect key="frame" x="0.0" y="0.0" width="202" height="336.66666666666669"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="srg-qy-zP2" secondAttribute="height" multiplier="3:5" id="SL6-Ky-oJj"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EB-Gx-JiO">
+                                        <rect key="frame" x="0.0" y="336.66666666666663" width="202" height="20.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65q-Ud-9pg">
+                                        <rect key="frame" x="0.0" y="357" width="202" height="20.333333333333314"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DBU-N3-bnZ">
+                                        <rect key="frame" x="0.0" y="377.33333333333337" width="202" height="122.66666666666669"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="500" id="wLN-ec-tsx"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="w3R-xH-szZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Sed-Cw-5k4" firstAttribute="centerX" secondItem="zYf-0a-bkL" secondAttribute="centerX" id="boO-dh-3d3"/>
+                            <constraint firstItem="Sed-Cw-5k4" firstAttribute="centerY" secondItem="zYf-0a-bkL" secondAttribute="centerY" id="iTQ-px-taL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2mE-Yv-Db7"/>
+                    <connections>
+                        <outlet property="authorLabel" destination="65q-Ud-9pg" id="jNs-hH-ero"/>
+                        <outlet property="authorsStackView" destination="DBU-N3-bnZ" id="VmU-r0-fvR"/>
+                        <outlet property="bookCoverImage" destination="srg-qy-zP2" id="PWr-jj-Bal"/>
+                        <outlet property="bookTitleLabel" destination="2EB-Gx-JiO" id="t35-Wf-iXQ"/>
+                        <segue destination="P2J-E4-A14" kind="show" identifier="authorInfoSegue" id="pO6-Dl-HHT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5C-KP-BU8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="690.83969465648852" y="-885.21126760563379"/>
+        </scene>
+        <!--Detail Author View Controller-->
+        <scene sceneID="UeK-oZ-H2L">
+            <objects>
+                <viewController id="P2J-E4-A14" customClass="DetailAuthorViewController" customModule="bookworm" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VEF-aH-6hJ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="g7N-Uk-bga">
+                                <rect key="frame" x="136" y="311" width="121" height="230"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YsV-ox-S4B">
+                                        <rect key="frame" x="0.0" y="0.0" width="121" height="201.66666666666666"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="YsV-ox-S4B" secondAttribute="height" multiplier="3:5" id="7Cw-xk-sYL"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQR-3z-bB0">
+                                        <rect key="frame" x="0.0" y="209.66666666666663" width="121" height="20.333333333333343"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Le-dh-gIA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="g7N-Uk-bga" firstAttribute="centerX" secondItem="VEF-aH-6hJ" secondAttribute="centerX" id="ZI0-6l-m7D"/>
+                            <constraint firstItem="g7N-Uk-bga" firstAttribute="centerY" secondItem="VEF-aH-6hJ" secondAttribute="centerY" id="icx-0s-7n3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Uw2-sZ-VK7"/>
+                    <connections>
+                        <outlet property="authorImage" destination="YsV-ox-S4B" id="EB2-cx-Sme"/>
+                        <outlet property="authorName" destination="EQR-3z-bB0" id="5Qy-8R-PoY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zhR-J7-YVj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1576" y="-885"/>
         </scene>
         <!--Search-->
         <scene sceneID="YSv-JC-wsE">
