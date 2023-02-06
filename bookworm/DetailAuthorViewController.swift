@@ -38,29 +38,35 @@ extension DetailAuthorViewController {
         let request = AF.request("https://openlibrary.org/authors/\(authorId).json")
         request
             .validate()
-            .responseDecodable(of: Author.self, decoder: decoder) { response in
+            .responseDecodable(of: Author.self, decoder: decoder) { [weak self] response in
                 guard response.error == nil else { return }
                 guard let info = response.value else { return }
                 
-                self.authorInfo = info
+                self?.authorInfo = info
+                
+                guard let authorImage = self?.authorInfo?.photos?.first else {
+                    return
+                }
+                
+                let imageId = String(authorImage)
+                
+                let requestImage = AF.request("https://covers.openlibrary.org/b/id/\(imageId)-M.jpg", method: .get)
+                requestImage.responseImage { [weak self] response in
+                    guard let image = response.value else { return }
+                    DispatchQueue.main.async { [weak self] in
+                        self?.authorImage.image = image
+                    }
+                }
              }
         
         let requestWorks = AF.request("https://openlibrary.org/authors/\(authorId)/works.json")
         requestWorks
             .validate()
-            .responseDecodable(of: Works.self, decoder: decoder) { response in
+            .responseDecodable(of: Works.self, decoder: decoder) { [weak self] response in
                 guard response.error == nil else { return }
                 guard let info = response.value else { return }
                 
-                self.works = info.entries
+                self?.works = info.entries
             }
-        
-        let requestImage = AF.request("https://covers.openlibrary.org/b/id/\(String(describing: authorInfo?.photos?.first))-M.jpg", method: .get)
-        requestImage.responseImage { [weak self] response in
-            guard let image = response.value else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.authorImage.image = image
-            }
-        }
     }
 }
