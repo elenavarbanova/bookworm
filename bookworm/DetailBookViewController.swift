@@ -23,26 +23,6 @@ class DetailBookViewController: UIViewController {
     var author = String()
     var authors: [String: String] = [:]
     
-    func createButton(for title: String) {
-        let button = UIButton(type: .system)
-        button.configuration = .plain()
-        
-        if title == "Unknown author" {
-            button.setTitle(title, for: .disabled)
-        } else {
-            button.setTitle(title, for: .normal)
-        }
-
-        button.setTitleColor(.purple, for: .normal)
-        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-        
-        authorsStackView.addArrangedSubview(button)
-    }
-    
-    @objc func buttonTapped(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "authorInfoSegue", sender: sender)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchBookInfo()
@@ -68,7 +48,7 @@ class DetailBookViewController: UIViewController {
         guard let url = imageID else { return }
         
         let request = AF.request(url, method: .get)
-        request.responseImage { [weak self] response in
+        request.responseImage { response in
             guard let image = response.value else { return }
             DispatchQueue.main.async { [weak self] in
                 self?.bookCoverImage.image = image
@@ -80,17 +60,33 @@ class DetailBookViewController: UIViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        guard let destination = segue.destination as? DetailAuthorViewController else {
-            return
-        }
-        guard let button = sender as? UIButton else {
-            return
-        }
-        guard let authorName = button.currentTitle else {
+        guard let destination = segue.destination as? DetailAuthorViewController,
+              let button = sender as? UIButton,
+              let authorName = button.currentTitle else {
             return
         }
         
         destination.author = authors[authorName]!
+    }
+    
+    func createButton(for title: String) {
+        let button = UIButton(type: .system)
+        button.configuration = .plain()
+        
+        if title == "Unknown author" {
+            button.setTitle(title, for: .disabled)
+        } else {
+            button.setTitle(title, for: .normal)
+        }
+
+        button.setTitleColor(.purple, for: .normal)
+        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        
+        authorsStackView.addArrangedSubview(button)
+    }
+    
+    @objc func buttonTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "authorInfoSegue", sender: sender)
     }
 }
 
@@ -105,8 +101,10 @@ extension DetailBookViewController {
         request
             .validate()
             .responseDecodable(of: ResultInfoBook.self, decoder: decoder) { response in
-                guard response.error == nil else { return }
-                guard let info = response.value else { return }
+                guard response.error == nil,
+                      let info = response.value else {
+                    return
+                }
                 
                 self.infoBook = info.docs
             }
@@ -114,13 +112,13 @@ extension DetailBookViewController {
         let descriptionRequest = AF.request("https://openlibrary.org/works/\(bookId).json")
         descriptionRequest
             .validate()
-            .responseDecodable(of: DescriptionBook.self, decoder: decoder) { response in
+            .responseDecodable(of: DescriptionBook.self, decoder: decoder) { [weak self] response in
                 guard response.error == nil else {
                     return
                 }
                 guard let description = response.value else { return }
                 
-                self.descriptionBook = description.description.value
+                self?.descriptionBook = description.description.value
             }
     }
 }

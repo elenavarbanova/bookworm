@@ -24,6 +24,7 @@ class DetailAuthorViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         authorName.text = author
     }
 }
@@ -39,19 +40,18 @@ extension DetailAuthorViewController {
         request
             .validate()
             .responseDecodable(of: Author.self, decoder: decoder) { [weak self] response in
-                guard response.error == nil else { return }
-                guard let info = response.value else { return }
-                
-                self?.authorInfo = info
-                
-                guard let authorImage = self?.authorInfo?.photos?.first else {
+                guard response.error == nil,
+                      let info = response.value,
+                      let authorImage = info.photos?.first else {
                     return
                 }
+                
+                self?.authorInfo = info
                 
                 let imageId = String(authorImage)
                 
                 let requestImage = AF.request("https://covers.openlibrary.org/b/id/\(imageId)-M.jpg", method: .get)
-                requestImage.responseImage { [weak self] response in
+                requestImage.responseImage { response in
                     guard let image = response.value else { return }
                     DispatchQueue.main.async { [weak self] in
                         self?.authorImage.image = image
@@ -63,8 +63,10 @@ extension DetailAuthorViewController {
         requestWorks
             .validate()
             .responseDecodable(of: Works.self, decoder: decoder) { [weak self] response in
-                guard response.error == nil else { return }
-                guard let info = response.value else { return }
+                guard response.error == nil,
+                      let info = response.value else {
+                    return
+                }
                 
                 self?.works = info.entries
             }

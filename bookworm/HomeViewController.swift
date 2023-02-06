@@ -16,6 +16,15 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchTrendingBooks()
+        setupTableViewBackgroundView()
+    }
+    
+    func setupTableViewBackgroundView() {
+        let activityIndicator = UIActivityIndicatorView(frame: .zero)
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+        tableView.backgroundView = activityIndicator
     }
     
     @IBAction func refresh(_ sender: UIRefreshControl) {
@@ -28,7 +37,7 @@ class HomeViewController: UITableViewController {
         
         let book = self.items[indexPath.row]
         
-        self.performSegue(withIdentifier: "DetailBookSegue", sender: book)
+        performSegue(withIdentifier: "DetailBookSegue", sender: book)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,13 +76,9 @@ class HomeViewController: UITableViewController {
         
         super.prepare(for: segue, sender: sender)
         
-        guard segue.identifier == "DetailBookSegue" else {
-            return
-        }
-        guard let destination = segue.destination as? DetailBookViewController else {
-            return
-        }
-        guard let book = sender as? Displayable else {
+        guard segue.identifier == "DetailBookSegue",
+              let destination = segue.destination as? DetailBookViewController,
+              let book = sender as? Displayable else {
             return
         }
         
