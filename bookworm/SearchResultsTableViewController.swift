@@ -14,6 +14,7 @@ class SearchResultsTableViewController: UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var items = [Displayable]()
     var currentSearchRequest: DataRequest? = nil
+    let backgroundViewLabel = UILabel(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +30,7 @@ class SearchResultsTableViewController: UITableViewController {
         navigationItem.searchController = searchController
     }
     
-
-    
     func setupTableViewBackgroundView() {
-        let backgroundViewLabel = UILabel(frame: .zero)
         backgroundViewLabel.textColor = .darkGray
         backgroundViewLabel.numberOfLines = 0
         backgroundViewLabel.text = "Oops, No results to show!"
@@ -108,6 +106,7 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
                 
                 self?.items = books.resultBooks
                 self?.tableView.reloadData()
+                self?.backgroundViewLabel.isHidden = true
             }
         
         
@@ -116,5 +115,6 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         items.removeAll()
         tableView.reloadData()
+        backgroundViewLabel.isHidden = false
     }
 }
