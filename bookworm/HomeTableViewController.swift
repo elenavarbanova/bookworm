@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-class HomeViewController: UITableViewController {
+class HomeTableViewController: UITableViewController {
     
     var items = [Displayable]()
     
@@ -87,7 +87,7 @@ class HomeViewController: UITableViewController {
     }
 }
 
-extension HomeViewController {
+extension HomeTableViewController {
     func fetchTrendingBooks() {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
