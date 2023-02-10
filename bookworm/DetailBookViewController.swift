@@ -15,7 +15,6 @@ import FirebaseFirestore
 class DetailBookViewController: UIViewController {
 
     @IBOutlet weak var bookCoverImage: UIImageView!
-    @IBOutlet weak var bookTitleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var authorsStackView: UIStackView!
     var imageID: String?
@@ -35,6 +34,8 @@ class DetailBookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = book?.titleLabelText
         
         fetchBookInfo()
         
@@ -56,8 +57,6 @@ class DetailBookViewController: UIViewController {
         super.viewWillAppear(animated)
         
         authorLabel.text = book?.subtitleLabelText
-        bookTitleLabel.text = book?.titleLabelText
-
 
         guard let url = imageID else { return }
         
@@ -81,6 +80,7 @@ class DetailBookViewController: UIViewController {
         }
         
         destination.author = authors[authorName]!
+        destination.nameAuthor = authorName
     }
     
     func createButton(for title: String) {
