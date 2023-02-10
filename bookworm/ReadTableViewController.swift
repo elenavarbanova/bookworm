@@ -84,12 +84,9 @@ class ReadTableViewController: UITableViewController {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    for document in querySnapshot!.documents {
-                        self.bookIds.append(document.documentID)
-                        self.readBooks[document.documentID] = nil
-                        self.fetchResultBooks(for: document.documentID)
-                        
-                    }
+                    self.bookIds.append(document.documentID)
+                    self.readBooks[document.documentID] = nil
+                    self.fetchResultBooks(for: document.documentID)
                 }
             }
         }

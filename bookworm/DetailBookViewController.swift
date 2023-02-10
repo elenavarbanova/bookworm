@@ -143,7 +143,9 @@ class DetailBookViewController: UIViewController {
             return
         }
         
-        self.database.collection("users/").document("\(userId)").collection("books").document("\(bookId)").setData(["book_state":list.rawValue]) { err in
+        let dateNow = Date.now
+        
+        self.database.collection("users/").document("\(userId)").collection("books").document("\(bookId)").setData(["book_state":list.rawValue, "date_created":dateNow]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
