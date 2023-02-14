@@ -15,8 +15,8 @@ import FirebaseFirestore
 class DetailBookViewController: UIViewController {
 
     @IBOutlet weak var bookCoverImage: UIImageView!
-    @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var authorsStackView: UIStackView!
+    @IBOutlet weak var commentTextField: UITextField!
     var imageID: String?
     
     var book: Displayable? = nil
@@ -55,8 +55,6 @@ class DetailBookViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        authorLabel.text = book?.subtitleLabelText
 
         guard let url = imageID else { return }
         
@@ -80,7 +78,31 @@ class DetailBookViewController: UIViewController {
         }
         
         destination.author = authors[authorName]!
-        destination.nameAuthor = authorName
+        destination.authorName = authorName
+    }
+    
+    @IBAction func commentButtonTapped(_ sender: Any) {
+        
+        let dateNow = Date.now
+        
+        guard let comment = commentTextField.text?.trimmingCharacters(in: .whitespaces),
+              let userId = Auth.auth().currentUser?.uid as? String,
+              let bookId = (book?.key as? NSString)?.lastPathComponent else {
+            return
+        }
+        
+        self.database.collection("books").document("\(bookId)").collection("comments").addDocument(data: [
+                "comment":comment,
+                "date":dateNow,
+                "user_id":userId
+            ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        self.commentTextField.text?.removeAll()
     }
     
     func createButton(for title: String) {
@@ -114,15 +136,15 @@ class DetailBookViewController: UIViewController {
         button.configuration = config
         
         let TBRAction = UIAction(title: "TBR", handler: { [weak self] action in
-            self.addBook(list: .tbr)
+            self?.addBook(list: .tbr)
         })
         
         let CRAction = UIAction(title: "Currently reading", handler: { [weak self] action in
-            self.addBook(list: .reading)
+            self?.addBook(list: .reading)
         })
         
         let ReadAction = UIAction(title: "Read", handler: { [weak self] action in
-            self.addBook(list: .read)
+            self?.addBook(list: .read)
         })
         
 //        action.image = UIImage(systemName: "checkmark")
@@ -146,8 +168,8 @@ class DetailBookViewController: UIViewController {
         let dateNow = Date.now
         
         database.collection("users/").document("\(userId)").collection("books").document("\(bookId)").setData(["book_state":list.rawValue, "date_created":dateNow]) { err in
-            guard let error != err else {
-                print("Error writing document: \(error)")
+            guard err != nil else {
+                print("Error writing document: \(err!)")
                 return
             }
             print("Document successfully written!")
