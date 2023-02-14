@@ -79,15 +79,15 @@ class ReadTableViewController: UITableViewController {
         guard let userId = Auth.auth().currentUser?.uid as? String else {
             return
         }
-        database.collection("users").document(userId).collection("books").whereField("book_state", isEqualTo: BookList.read.rawValue).addSnapshotListener { (querySnapshot, error) in
-            if let err = error {
+        database.collection("users").document(userId).collection("books").whereField("book_state", isEqualTo: BookList.read.rawValue).addSnapshotListener { [weak self] (querySnapshot, error) in
+            guard let err != error else {
                 print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    self.bookIds.append(document.documentID)
-                    self.readBooks[document.documentID] = nil
-                    self.fetchResultBooks(for: document.documentID)
-                }
+                return
+            }
+            for document in querySnapshot!.documents {
+                self.bookIds.append(document.documentID)
+                self.readBooks[document.documentID] = nil
+                self.fetchResultBooks(for: document.documentID)
             }
         }
     }

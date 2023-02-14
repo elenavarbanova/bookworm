@@ -79,16 +79,14 @@ class TBRTableViewController: UITableViewController {
         guard let userId = Auth.auth().currentUser?.uid as? String else {
             return
         }
-        database.collection("users").document(userId).collection("books").whereField("book_state", isEqualTo: BookList.tbr.rawValue).addSnapshotListener { (querySnapshot, error) in
-            if let err = error {
+        database.collection("users").document(userId).collection("books").whereField("book_state", isEqualTo: BookList.tbr.rawValue).addSnapshotListener { [weak self] (querySnapshot, error) in
+            if let err != error else {
                 print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    self.bookIds.append(document.documentID)
-                    self.tbrBooks[document.documentID] = nil
-                    self.fetchResultBooks(for: document.documentID)
-                    
-                }
+            }
+            for document in querySnapshot!.documents {
+                self.bookIds.append(document.documentID)
+                self.tbrBooks[document.documentID] = nil
+                self.fetchResultBooks(for: document.documentID)
             }
         }
     }

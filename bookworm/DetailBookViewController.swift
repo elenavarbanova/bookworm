@@ -113,15 +113,15 @@ class DetailBookViewController: UIViewController {
         button.showsMenuAsPrimaryAction = true
         button.configuration = config
         
-        let TBRAction = UIAction(title: "TBR", handler: { action in
+        let TBRAction = UIAction(title: "TBR", handler: { [weak self] action in
             self.addBook(list: .tbr)
         })
         
-        let CRAction = UIAction(title: "Currently reading", handler: { action in
+        let CRAction = UIAction(title: "Currently reading", handler: { [weak self] action in
             self.addBook(list: .reading)
         })
         
-        let ReadAction = UIAction(title: "Read", handler: { action in
+        let ReadAction = UIAction(title: "Read", handler: { [weak self] action in
             self.addBook(list: .read)
         })
         
@@ -145,12 +145,12 @@ class DetailBookViewController: UIViewController {
         
         let dateNow = Date.now
         
-        self.database.collection("users/").document("\(userId)").collection("books").document("\(bookId)").setData(["book_state":list.rawValue, "date_created":dateNow]) { err in
-            if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
+        database.collection("users/").document("\(userId)").collection("books").document("\(bookId)").setData(["book_state":list.rawValue, "date_created":dateNow]) { err in
+            guard let error != err else {
+                print("Error writing document: \(error)")
+                return
             }
+            print("Document successfully written!")
         }
     }
 }
