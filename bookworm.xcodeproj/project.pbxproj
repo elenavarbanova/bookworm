@@ -13,8 +13,10 @@
 		F330A931298FFEF3006C8145 /* DetailAuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F330A930298FFEF3006C8145 /* DetailAuthorViewController.swift */; };
 		F330A9332990096C006C8145 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = F330A9322990096C006C8145 /* Author.swift */; };
 		F330A93529901E07006C8145 /* AuthorWorks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F330A93429901E07006C8145 /* AuthorWorks.swift */; };
+		F330A9372992FB46006C8145 /* TBRTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F330A9362992FB46006C8145 /* TBRTableViewController.swift */; };
+		F330A93929941213006C8145 /* ReadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F330A93829941213006C8145 /* ReadTableViewController.swift */; };
 		F36FB5E5296C8E9C00D870DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36FB5E4296C8E9C00D870DC /* Main.storyboard */; };
-		F36FB5E7296C910500D870DC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FB5E6296C910500D870DC /* HomeViewController.swift */; };
+		F36FB5E7296C910500D870DC /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FB5E6296C910500D870DC /* HomeTableViewController.swift */; };
 		F383C0EF294FB77300D0C766 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383C0EE294FB77300D0C766 /* AppDelegate.swift */; };
 		F383C0F1294FB77300D0C766 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383C0F0294FB77300D0C766 /* SceneDelegate.swift */; };
 		F383C0F6294FB77300D0C766 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F383C0F4294FB77300D0C766 /* Login.storyboard */; };
@@ -58,7 +60,6 @@
 		F3DA25C42979CC7700EAFB8A /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */; };
 		F3E3198C298079CF0070E0AA /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = F3E3198B298079CF0070E0AA /* AlamofireImage */; };
 		F3E3198E2981BB0F0070E0AA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E3198D2981BB0F0070E0AA /* ProfileViewController.swift */; };
-		F3E3199029869D2E0070E0AA /* ResultBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E3198F29869D2E0070E0AA /* ResultBookTableViewCell.swift */; };
 		F3E319922986A08E0070E0AA /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E319912986A08E0070E0AA /* SearchResultsTableViewController.swift */; };
 		F3E319942986EB400070E0AA /* ResultBooks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E319932986EB3F0070E0AA /* ResultBooks.swift */; };
 /* End PBXBuildFile section */
@@ -70,8 +71,10 @@
 		F330A930298FFEF3006C8145 /* DetailAuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAuthorViewController.swift; sourceTree = "<group>"; };
 		F330A9322990096C006C8145 /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		F330A93429901E07006C8145 /* AuthorWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorWorks.swift; sourceTree = "<group>"; };
+		F330A9362992FB46006C8145 /* TBRTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBRTableViewController.swift; sourceTree = "<group>"; };
+		F330A93829941213006C8145 /* ReadTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadTableViewController.swift; sourceTree = "<group>"; };
 		F36FB5E4296C8E9C00D870DC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		F36FB5E6296C910500D870DC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F36FB5E6296C910500D870DC /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		F383C0EB294FB77300D0C766 /* bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F383C0EE294FB77300D0C766 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F383C0F0294FB77300D0C766 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,7 +91,6 @@
 		F3DA25BF29789AB600EAFB8A /* Books.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Books.swift; sourceTree = "<group>"; };
 		F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		F3E3198D2981BB0F0070E0AA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		F3E3198F29869D2E0070E0AA /* ResultBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBookTableViewCell.swift; sourceTree = "<group>"; };
 		F3E319912986A08E0070E0AA /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 		F3E319932986EB3F0070E0AA /* ResultBooks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBooks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,24 +158,25 @@
 				F383C0F0294FB77300D0C766 /* SceneDelegate.swift */,
 				F383C0F4294FB77300D0C766 /* Login.storyboard */,
 				F36FB5E4296C8E9C00D870DC /* Main.storyboard */,
+				F3B290FA2963445700934701 /* WelcomeViewController.swift */,
+				F3B290FC29635A9100934701 /* SignInViewController.swift */,
+				F3B290FE29635AB800934701 /* RegisterViewController.swift */,
+				F36FB5E6296C910500D870DC /* HomeTableViewController.swift */,
+				F3E319912986A08E0070E0AA /* SearchResultsTableViewController.swift */,
+				F330A9362992FB46006C8145 /* TBRTableViewController.swift */,
+				F330A93829941213006C8145 /* ReadTableViewController.swift */,
+				F3E3198D2981BB0F0070E0AA /* ProfileViewController.swift */,
 				F3CD8111298A9C7300CEE7D2 /* DetailBookViewController.swift */,
 				F330A930298FFEF3006C8145 /* DetailAuthorViewController.swift */,
-				F3E3198F29869D2E0070E0AA /* ResultBookTableViewCell.swift */,
-				F3E319912986A08E0070E0AA /* SearchResultsTableViewController.swift */,
 				F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */,
-				F36FB5E6296C910500D870DC /* HomeViewController.swift */,
-				F3E3198D2981BB0F0070E0AA /* ProfileViewController.swift */,
 				F3DA25BD2978989000EAFB8A /* Book.swift */,
-				F330A93429901E07006C8145 /* AuthorWorks.swift */,
-				F330A9322990096C006C8145 /* Author.swift */,
+				F3DA25BF29789AB600EAFB8A /* Books.swift */,
+				F3E319932986EB3F0070E0AA /* ResultBooks.swift */,
 				F330A928298C4EA7006C8145 /* InfoBook.swift */,
 				F330A92C298C52AC006C8145 /* DescriptionBook.swift */,
 				F330A92A298C5219006C8145 /* ResultInfoBook.swift */,
-				F3DA25BF29789AB600EAFB8A /* Books.swift */,
-				F3E319932986EB3F0070E0AA /* ResultBooks.swift */,
-				F3B290FA2963445700934701 /* WelcomeViewController.swift */,
-				F3B290FE29635AB800934701 /* RegisterViewController.swift */,
-				F3B290FC29635A9100934701 /* SignInViewController.swift */,
+				F330A9322990096C006C8145 /* Author.swift */,
+				F330A93429901E07006C8145 /* AuthorWorks.swift */,
 				F383C0F7294FB77500D0C766 /* Assets.xcassets */,
 				F383C0F9294FB77500D0C766 /* LaunchScreen.storyboard */,
 				F383C0FC294FB77500D0C766 /* Info.plist */,
@@ -295,13 +298,13 @@
 				F330A93529901E07006C8145 /* AuthorWorks.swift in Sources */,
 				F330A92D298C52AC006C8145 /* DescriptionBook.swift in Sources */,
 				F3DA25BE2978989000EAFB8A /* Book.swift in Sources */,
-				F3E3199029869D2E0070E0AA /* ResultBookTableViewCell.swift in Sources */,
 				F3B290FD29635A9100934701 /* SignInViewController.swift in Sources */,
 				F330A931298FFEF3006C8145 /* DetailAuthorViewController.swift in Sources */,
 				F3E3198E2981BB0F0070E0AA /* ProfileViewController.swift in Sources */,
 				F3E319942986EB400070E0AA /* ResultBooks.swift in Sources */,
 				F330A92B298C5219006C8145 /* ResultInfoBook.swift in Sources */,
 				F3B290FF29635AB800934701 /* RegisterViewController.swift in Sources */,
+				F330A9372992FB46006C8145 /* TBRTableViewController.swift in Sources */,
 				F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */,
 				F3DA25C42979CC7700EAFB8A /* BookTableViewCell.swift in Sources */,
 				F383C0EF294FB77300D0C766 /* AppDelegate.swift in Sources */,
@@ -309,8 +312,9 @@
 				F3DA25C029789AB600EAFB8A /* Books.swift in Sources */,
 				F383C0F1294FB77300D0C766 /* SceneDelegate.swift in Sources */,
 				F3CD8112298A9C7300CEE7D2 /* DetailBookViewController.swift in Sources */,
+				F330A93929941213006C8145 /* ReadTableViewController.swift in Sources */,
 				F330A929298C4EA7006C8145 /* InfoBook.swift in Sources */,
-				F36FB5E7296C910500D870DC /* HomeViewController.swift in Sources */,
+				F36FB5E7296C910500D870DC /* HomeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

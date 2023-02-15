@@ -48,7 +48,7 @@ class SearchResultsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultBookCell", for: indexPath) as! ResultBookTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookTableViewCell
         
         let eachBook = items[indexPath.row]
         cell.bookTitleLabel?.text = eachBook.titleLabelText

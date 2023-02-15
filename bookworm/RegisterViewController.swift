@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseCore
+import FirebaseFirestore
 
 class RegisterViewController: UIViewController {
     
@@ -75,6 +77,17 @@ class RegisterViewController: UIViewController {
                 }
                 if Auth.auth().currentUser != nil {
                     self.performSegue(withIdentifier: "signInSegue", sender: nil)
+                    let database = Firestore.firestore()
+                    guard let userId = Auth.auth().currentUser?.uid as? String else {
+                        return
+                    }
+                    database.collection("users").document("\(userId)").setData([:]) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
                 } else  {
                     self.performSegue(withIdentifier: "signUpSegue", sender: nil)
                 }

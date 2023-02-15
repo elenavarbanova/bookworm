@@ -16,16 +16,13 @@ class DetailAuthorViewController: UIViewController {
 
     var authorInfo: Author? = nil
     var author = String()
+    var nameAuthor = String()
     var works = [AuthorWorks]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAuthorInfo()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        authorName.text = author
+        navigationItem.title = nameAuthor
     }
 }
 
