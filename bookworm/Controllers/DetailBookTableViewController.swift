@@ -148,7 +148,16 @@ class DetailBookTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         
+        guard let destination = segue.destination as? DetailAuthorTableViewController,
+              let button = sender as? UIButton,
+              let authorName = button.currentTitle else {
+            return
+        }
+    
+        destination.author = authors[authorName]!
+        destination.authorName = authorName
     }
     
     
@@ -242,8 +251,8 @@ class DetailBookTableViewController: UITableViewController {
         let dateNow = Date.now
         
         database.collection("users/").document("\(userId)").collection("books").document("\(bookId)").setData(["book_state":list.rawValue, "date_created":dateNow]) { err in
-            guard err != nil else {
-                print("Error writing document: \(err!)")
+            guard err == nil else {
+                print("Error writing document: \(String(describing: err))")
                 return
             }
             print("Document successfully written!")
