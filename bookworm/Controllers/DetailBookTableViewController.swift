@@ -150,14 +150,22 @@ class DetailBookTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let destination = segue.destination as? DetailAuthorTableViewController,
+        if segue.identifier == "SubjectSegue",
+              let destination = segue.destination as? SubjectTableViewController,
               let button = sender as? UIButton,
-              let authorName = button.currentTitle else {
-            return
+              let subject = button.currentTitle {
+            destination.subject = subject
+        } else {
+            
+            guard let destination = segue.destination as? DetailAuthorTableViewController,
+                  let button = sender as? UIButton,
+                  let authorName = button.currentTitle else {
+                return
+            }
+            
+            destination.author = authors[authorName]!
+            destination.authorName = authorName
         }
-    
-        destination.author = authors[authorName]!
-        destination.authorName = authorName
     }
     
     
@@ -185,7 +193,7 @@ class DetailBookTableViewController: UITableViewController {
 
         button.setTitle(title, for: .normal)
         button.setTitleColor(.purple, for: .normal)
-        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(subjectButtonTapped(_:)), for: .touchUpInside)
         
         cell.subjectsStackView.addArrangedSubview(button)
     }
@@ -201,7 +209,7 @@ class DetailBookTableViewController: UITableViewController {
         }
 
         button.setTitleColor(.purple, for: .normal)
-        button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(authorButtonTapped(_:)), for: .touchUpInside)
         
         cell.authorBookStackView.addArrangedSubview(button)
     }
@@ -260,8 +268,12 @@ class DetailBookTableViewController: UITableViewController {
     }
     
     //MARK: - Buttons action
-    @objc func buttonTapped(_ sender: UIButton) {
+    @objc func authorButtonTapped(_ sender: UIButton) {
         self.performSegue(withIdentifier: "authorInfoSegue", sender: sender)
+    }
+    
+    @objc func subjectButtonTapped(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "SubjectSegue", sender: sender)
     }
 
     @IBAction func commentButtonTapped(_ sender: Any) {
