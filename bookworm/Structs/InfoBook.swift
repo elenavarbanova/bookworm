@@ -20,7 +20,6 @@ struct InfoBook: Decodable {
     var language: [String]?
     var authorKey: [String]?
     var authorName: [String]?
-    var place: [String]?
     var subject: [String]
     var contributor: [String]?
     
@@ -37,7 +36,6 @@ struct InfoBook: Decodable {
         case language
         case authorKey = "author_key"
         case authorName = "author_name"
-        case place
         case subject
         case contributor
     }

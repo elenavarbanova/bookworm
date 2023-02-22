@@ -12,11 +12,8 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 
-class DetailBookViewController: UIViewController {
+class DetailBookViewController: UITableViewController {
 
-    @IBOutlet weak var bookCoverImage: UIImageView!
-    @IBOutlet weak var authorsStackView: UIStackView!
-    @IBOutlet weak var commentTextField: UITextField!
     var imageID: String?
     
     var book: Displayable? = nil
@@ -62,48 +59,50 @@ class DetailBookViewController: UIViewController {
         request.responseImage { response in
             guard let image = response.value else { return }
             DispatchQueue.main.async { [weak self] in
-                self?.bookCoverImage.image = image
+//                cell image
+//                self?.bookCoverImage.image = image
             }
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        super.prepare(for: segue, sender: sender)
-        
-        guard let destination = segue.destination as? DetailAuthorViewController,
-              let button = sender as? UIButton,
-              let authorName = button.currentTitle else {
-            return
-        }
-        
-        destination.author = authors[authorName]!
-        destination.authorName = authorName
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//        super.prepare(for: segue, sender: sender)
+//        
+//        guard let destination = segue.destination as? DetailAuthorViewController,
+//              let button = sender as? UIButton,
+//              let authorName = button.currentTitle else {
+//            return
+//        }
+//        
+//        destination.author = authors[authorName]!
+//        destination.authorName = authorName
+//    }
     
-    @IBAction func commentButtonTapped(_ sender: Any) {
-        
-        let dateNow = Date.now
-        
-        guard let comment = commentTextField.text?.trimmingCharacters(in: .whitespaces),
-              let userId = Auth.auth().currentUser?.uid as? String,
-              let bookId = (book?.key as? NSString)?.lastPathComponent else {
-            return
-        }
-        
-        self.database.collection("books").document("\(bookId)").collection("comments").addDocument(data: [
-                "comment":comment,
-                "date":dateNow,
-                "user_id":userId
-            ]) { err in
-            if let err = err {
-                print("Error writing document: \(err)")
-            } else {
-                print("Document successfully written!")
-            }
-        }
-        self.commentTextField.text?.removeAll()
-    }
+//    @IBAction func commentButtonTapped(_ sender: Any) {
+//        
+//        let dateNow = Date.now
+////        cell comment
+//        guard let comment = commentTextField.text?.trimmingCharacters(in: .whitespaces),
+//              let userId = Auth.auth().currentUser?.uid as? String,
+//              let bookId = (book?.key as? NSString)?.lastPathComponent else {
+//            return
+//        }
+//        
+//        self.database.collection("books").document("\(bookId)").collection("comments").addDocument(data: [
+//                "comment":comment,
+//                "date":dateNow,
+//                "user_id":userId
+//            ]) { err in
+//            if let err = err {
+//                print("Error writing document: \(err)")
+//            } else {
+//                print("Document successfully written!")
+//            }
+//        }
+////          cell comment
+////        self.commentTextField.text?.removeAll()
+//    }
     
     func createButton(for title: String) {
         let button = UIButton(type: .system)
@@ -118,7 +117,8 @@ class DetailBookViewController: UIViewController {
         button.setTitleColor(.purple, for: .normal)
         button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         
-        authorsStackView.addArrangedSubview(button)
+//        cell authorstackview
+//        authorsStackView.addArrangedSubview(button)
     }
     
     @objc func buttonTapped(_ sender: UIButton) {
@@ -193,7 +193,7 @@ extension DetailBookViewController {
                     return
                 }
                 
-                self.infoBook = info.docs
+//                self.infoBook = info.docs
             }
         
         let descriptionRequest = AF.request("https://openlibrary.org/works/\(bookId).json")

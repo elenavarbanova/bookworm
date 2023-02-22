@@ -9,20 +9,19 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-class DetailAuthorViewController: UIViewController {
+class DetailAuthorViewController: UITableViewController {
     
     @IBOutlet weak var authorImage: UIImageView!
-    @IBOutlet weak var authorName: UILabel!
 
     var authorInfo: Author? = nil
     var author = String()
-    var nameAuthor = String()
+    var authorName = String()
     var works = [AuthorWorks]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAuthorInfo()
-        navigationItem.title = nameAuthor
+        navigationItem.title = authorName
     }
 }
 

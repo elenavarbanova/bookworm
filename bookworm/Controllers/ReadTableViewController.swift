@@ -1,8 +1,8 @@
 //
-//  TBRTableViewController.swift
+//  ReadTableViewController.swift
 //  bookworm
 //
-//  Created by Elena Varbanova on 7.02.23.
+//  Created by Elena Varbanova on 8.02.23.
 //
 
 import UIKit
@@ -12,10 +12,10 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 
-class TBRTableViewController: UITableViewController {
+class ReadTableViewController: UITableViewController {
     let backgroundViewLabel = UILabel(frame: .zero)
-    var bookIds = [String]()
-    var tbrBooks = [String: Displayable]()
+    var bookIds = [String()]
+    var readBooks = [String: Displayable]()
     
     enum BookList: Int {
     case tbr = 1
@@ -32,7 +32,7 @@ class TBRTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tbrBooks.count
+        return readBooks.count
     }
 
     
@@ -41,10 +41,10 @@ class TBRTableViewController: UITableViewController {
 
         let eachBook = bookIds[indexPath.row]
         
-        cell.bookTitleLabel?.text = tbrBooks[eachBook]?.titleLabelText
-        cell.authorLabel?.text = tbrBooks[eachBook]?.subtitleLabelText
+        cell.bookTitleLabel?.text = readBooks[eachBook]?.titleLabelText
+        cell.authorLabel?.text = readBooks[eachBook]?.subtitleLabelText
         
-        if let imageID = tbrBooks[eachBook]?.image {
+        if let imageID = readBooks[eachBook]?.image {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)
             request.responseImage { response in
@@ -69,7 +69,7 @@ class TBRTableViewController: UITableViewController {
     func setupTableViewBackgroundView() {
         backgroundViewLabel.textColor = .darkGray
         backgroundViewLabel.numberOfLines = 0
-        backgroundViewLabel.text = "Oops, it is pretty empty here! Add books"
+        backgroundViewLabel.text = "Oops, it is pretty empty here!"
         backgroundViewLabel.textAlignment = NSTextAlignment.center
         tableView.backgroundView = backgroundViewLabel
     }
@@ -79,31 +79,48 @@ class TBRTableViewController: UITableViewController {
         guard let userId = Auth.auth().currentUser?.uid as? String else {
             return
         }
-        database.collection("users").document(userId).collection("books").whereField("book_state", isEqualTo: BookList.tbr.rawValue).addSnapshotListener { [weak self] (querySnapshot, error) in
-            if let err != error else {
-                print("Error getting documents: \(err)")
+        database.collection("users").document(userId).collection("books").whereField("book_state", isEqualTo: BookList.read.rawValue).addSnapshotListener { [weak self] (querySnapshot, error) in
+            guard error == nil else {
+                print("Error getting documents: \(String(describing: error))")
+                return
             }
             for document in querySnapshot!.documents {
-                self.bookIds.append(document.documentID)
-                self.tbrBooks[document.documentID] = nil
-                self.fetchResultBooks(for: document.documentID)
+                self?.bookIds.append(document.documentID)
+                self?.readBooks[document.documentID] = nil
+                self?.fetchResultBooks(for: document.documentID)
             }
         }
     }
 
-
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let bookId = bookIds[indexPath.row]
+        
+        let book = self.readBooks[bookId]
+        
+        performSegue(withIdentifier: "DetailBookSegue", sender: book)
     }
-    */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "DetailBookSegue",
+              let destination = segue.destination as? DetailBookTableViewController,
+              let book = sender as? Displayable else {
+            return
+        }
+        
+        destination.book = book
+        destination.imageID = book.image
+    }
+    
+
 }
 
-extension TBRTableViewController {
+extension ReadTableViewController {
     func fetchResultBooks(for searchText: String) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
@@ -119,11 +136,11 @@ extension TBRTableViewController {
                 for book in books.resultBooks {
                     guard let resultKey = (book.key as? NSString)?.lastPathComponent else { continue }
                     if resultKey == searchText {
-                        self?.tbrBooks[searchText] = book
+                        self?.readBooks[searchText] = book
                         self?.tableView.reloadData()
                         self?.backgroundViewLabel.isHidden = true
                     }
                 }
-            }   
+            }
     }
 }

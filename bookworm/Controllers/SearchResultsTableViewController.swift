@@ -38,7 +38,25 @@ class SearchResultsTableViewController: UITableViewController {
         tableView.backgroundView = backgroundViewLabel
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let book = self.items[indexPath.row]
+        
+        performSegue(withIdentifier: "DetailBookSegue", sender: book)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "DetailBookSegue",
+              let destination = segue.destination as? DetailBookTableViewController,
+              let book = sender as? Displayable else {
+            return
+        }
+        
+        destination.book = book
+        destination.imageID = book.image
+    }
 
     // MARK: - Table view data source
 
