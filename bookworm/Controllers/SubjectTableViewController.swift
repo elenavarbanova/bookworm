@@ -32,7 +32,7 @@ class SubjectTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,16 +66,28 @@ class SubjectTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let book = self.items[indexPath.row]
+        
+        performSegue(withIdentifier: "DetailBookSegue", sender: book)
+    }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "DetailBookSegue",
+              let destination = segue.destination as? DetailBookTableViewController,
+              let book = sender as? Displayable else {
+            return
+        }
+        
+        destination.book = book
+        destination.imageID = book.image
     }
-    */
 
 }
 
@@ -83,14 +95,14 @@ extension SubjectTableViewController {
     func fetchBooksBySubject() {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        let searchSubject = subject.replacingOccurrences(of: " ", with: "_").lowercased()
-        let request = AF.request("https://openlibrary.org/subjects/\(searchSubject).json")
+        let searchSubject = subject.replacingOccurrences(of: " ", with: "+")
+        let request = AF.request("https://openlibrary.org/search.json?subject=\(searchSubject)")
         request
             .validate()
-            .responseDecodable(of: Books.self, decoder: decoder) { response in
+            .responseDecodable(of: ResultBooks.self, decoder: decoder) { response in
                 guard let books = response.value else { return }
                 
-                self.items = books.allBooks
+                self.items = books.resultBooks
                 self.tableView.reloadData()
             }
     }

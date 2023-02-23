@@ -308,7 +308,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="250"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="X1Z-aC-nTr">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="X1Z-aC-nTr">
                                                                 <rect key="frame" x="18" y="10.333333333333329" width="114" height="228.33333333333334"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L40-Jb-cHs">
@@ -326,6 +326,12 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="X1Z-aC-nTr" secondAttribute="trailing" id="79h-Ww-D8s"/>
+                                                            <constraint firstItem="X1Z-aC-nTr" firstAttribute="top" secondItem="g1m-JC-Trr" secondAttribute="top" id="BnQ-MC-rs2"/>
+                                                            <constraint firstAttribute="bottom" secondItem="X1Z-aC-nTr" secondAttribute="bottom" id="fh2-ct-LEV"/>
+                                                            <constraint firstItem="X1Z-aC-nTr" firstAttribute="leading" secondItem="g1m-JC-Trr" secondAttribute="leading" id="yaO-fF-RB0"/>
+                                                        </constraints>
                                                     </collectionViewCellContentView>
                                                     <size key="customSize" width="150" height="250"/>
                                                     <connections>
@@ -458,10 +464,10 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="top" secondItem="VLZ-xd-dAq" secondAttribute="topMargin" id="DIy-dt-Dgt"/>
-                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="leading" secondItem="VLZ-xd-dAq" secondAttribute="leadingMargin" constant="5" id="Xdz-MS-OPk"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="4uF-k4-fQJ" secondAttribute="trailing" constant="5" id="kN5-Ds-ryr"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="4uF-k4-fQJ" secondAttribute="bottom" id="pO6-zD-TQ4"/>
+                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="top" secondItem="VLZ-xd-dAq" secondAttribute="topMargin" id="E2F-h3-vXT"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4uF-k4-fQJ" secondAttribute="bottom" id="L94-mL-yfB"/>
+                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="leading" secondItem="VLZ-xd-dAq" secondAttribute="leadingMargin" constant="5" id="N08-ib-r4y"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="4uF-k4-fQJ" secondAttribute="trailing" constant="5" id="PfV-f7-IEA"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -484,7 +490,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jHk-VJ-YoB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="919.84732824427476" y="-379.57746478873241"/>
+            <point key="canvasLocation" x="1956" y="-358"/>
         </scene>
         <!--Detail Author Table View Controller-->
         <scene sceneID="HZj-IE-ePY">
@@ -652,7 +658,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GqR-tG-eFT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785.4961832061067" y="-380.28169014084511"/>
+            <point key="canvasLocation" x="3398" y="-358"/>
         </scene>
         <!--Subject Table View Controller-->
         <scene sceneID="yu0-qe-96n">
@@ -714,10 +720,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="xXl-wD-Wpf"/>
+                    <connections>
+                        <segue destination="XUa-0i-hAC" kind="show" identifier="DetailBookSegue" id="3qZ-Cq-va3"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QW3-DR-4aO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785" y="309"/>
+            <point key="canvasLocation" x="1956" y="690"/>
         </scene>
         <!--Search-->
         <scene sceneID="IUr-PW-NBZ">
@@ -1014,7 +1023,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iqm-6J-8e7"/>
+        <segue reference="FpT-Yk-9DE"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book" catalog="system" width="128" height="99"/>

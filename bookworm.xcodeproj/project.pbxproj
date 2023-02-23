@@ -210,8 +210,8 @@
 				F3EC385429A2A2D900093161 /* BioTableViewCell.swift */,
 				F3EC385629A2A32A00093161 /* AlternativeNamesTableViewCell.swift */,
 				F3EBFBEE29A2B3CA00AA55A4 /* MoreBooksTableViewCell.swift */,
-				F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */,
 				F3EBFBEC29A2B39D00AA55A4 /* BookCollectionViewCell.swift */,
+				F3DA25C32979CC7700EAFB8A /* BookTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

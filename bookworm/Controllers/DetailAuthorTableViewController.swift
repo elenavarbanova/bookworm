@@ -15,6 +15,7 @@ class DetailAuthorTableViewController: UITableViewController {
     var author = String()
     var authorName = String()
     var works = [AuthorWorks]()
+    var worksIDs = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +63,10 @@ class DetailAuthorTableViewController: UITableViewController {
                 createAlternativeNames(for: (authorInfo?.alternateNames?[names])!, for: cell)
             }
             return cell
+        } else if indexPath.section == Sections.MoreBooks.rawValue {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MoreBooks", for: indexPath) as! MoreBooksTableViewCell
+            cell.bookIDs = worksIDs
+            return cell
         }
         return UITableViewCell()
     }
@@ -70,6 +75,15 @@ class DetailAuthorTableViewController: UITableViewController {
         let label = UILabel()
         label.text = name
         cell.alternativeNamesStackView.addArrangedSubview(label)
+    }
+    
+    func getIDs() {
+        let countBooks = works.count
+        for book in 0..<countBooks {
+            let workId = (works[book].key as NSString).lastPathComponent
+            worksIDs.append(workId)
+        }
+//        tableView.reloadData()
     }
 
     /*
@@ -127,6 +141,7 @@ extension DetailAuthorTableViewController {
                 }
                 
                 self?.works = info.entries
+                self?.getIDs()
                 self?.tableView.reloadData()
             }
     }
