@@ -92,6 +92,9 @@ class RegisterViewController: UIViewController {
                     self.performSegue(withIdentifier: "signUpSegue", sender: nil)
                 }
             }
+            emailTextField.text?.removeAll()
+            passwordTextField.text?.removeAll()
+            confirmPasswordTextField.text?.removeAll()
         }
     }
 }

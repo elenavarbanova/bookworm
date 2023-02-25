@@ -25,6 +25,7 @@ class TBRTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         setupTableViewBackgroundView()
         getReadBooks()
     }
