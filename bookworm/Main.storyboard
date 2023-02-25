@@ -463,10 +463,12 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="4uF-k4-fQJ" secondAttribute="bottom" id="70e-EV-FnS"/>
-                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="leading" secondItem="VLZ-xd-dAq" secondAttribute="leadingMargin" id="AmX-z1-5Fh"/>
-                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="top" secondItem="VLZ-xd-dAq" secondAttribute="topMargin" id="V8c-6p-5QL"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="4uF-k4-fQJ" secondAttribute="trailing" id="aJ4-mb-Qjy"/>
+                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="top" secondItem="VLZ-xd-dAq" secondAttribute="topMargin" id="2wB-3e-5L8"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="4uF-k4-fQJ" secondAttribute="bottom" id="Gsq-R5-kR2"/>
+                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="centerX" secondItem="VLZ-xd-dAq" secondAttribute="centerX" id="JZ7-LM-W08"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="4uF-k4-fQJ" secondAttribute="trailing" id="OKu-pR-psR"/>
+                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="leading" secondItem="VLZ-xd-dAq" secondAttribute="leadingMargin" id="cfl-F7-CWy"/>
+                                        <constraint firstItem="4uF-k4-fQJ" firstAttribute="centerY" secondItem="VLZ-xd-dAq" secondAttribute="centerY" id="fbE-U2-nXH"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
