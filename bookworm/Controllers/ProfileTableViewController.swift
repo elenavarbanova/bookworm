@@ -308,7 +308,10 @@ class ProfileTableViewController: UITableViewController {
     func signOutButton() {
         do {
             try Auth.auth().signOut()
-            dismiss(animated: true)
+            self.tabBarController?.dismiss(animated: true)
+            if let rootNavigationCtonroller = self.navigationController?.presentingViewController as? UINavigationController {
+                rootNavigationCtonroller.popToRootViewController(animated: true)
+            }
         } catch {
             print(error)
         }

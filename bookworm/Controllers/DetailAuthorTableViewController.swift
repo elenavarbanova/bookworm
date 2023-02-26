@@ -83,7 +83,6 @@ class DetailAuthorTableViewController: UITableViewController {
             let workId = (works[book].key as NSString).lastPathComponent
             worksIDs.append(workId)
         }
-//        tableView.reloadData()
     }
 
     /*
