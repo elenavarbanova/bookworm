@@ -227,14 +227,17 @@ class DetailBookTableViewController: UITableViewController {
         
         let TBRAction = UIAction(title: "TBR", handler: { [weak self] action in
             self?.addBook(list: .tbr)
+            self?.addAuthor()
         })
         
         let CRAction = UIAction(title: "Currently reading", handler: { [weak self] action in
             self?.addBook(list: .reading)
+            self?.addAuthor()
         })
         
         let ReadAction = UIAction(title: "Read", handler: { [weak self] action in
             self?.addBook(list: .read)
+            self?.addAuthor()
         })
         
 //        action.image = UIImage(systemName: "checkmark")
@@ -248,6 +251,31 @@ class DetailBookTableViewController: UITableViewController {
         button.frame = CGRect(x: cell.addBookStackView.frame.midX, y: cell.addBookStackView.frame.midY, width: 100, height: 25)
             
         cell.addBookStackView.addSubview(button)
+    }
+    
+    func addAuthor() {
+        guard let userId = Auth.auth().currentUser?.uid as? String else {
+            return
+        }
+        
+        guard let authorIDs = book?.authorKeys else {
+            return
+        }
+        
+        let countIDs = authorIDs.count
+        
+        for auth in 0..<countIDs {
+            guard let authorID = (authorIDs[auth] as? NSString)?.lastPathComponent else {
+                continue
+            }
+            database.collection("users/").document("\(userId)").collection("authors").document("\(authorID)").setData([:]) { err in
+                guard err == nil else {
+                    print("Error writing document: \(String(describing: err))")
+                    return
+                }
+                print("Author successfully added!")
+            }
+        }
     }
     
     //MARK: - Add book to user's books
