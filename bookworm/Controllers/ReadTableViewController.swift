@@ -85,6 +85,9 @@ class ReadTableViewController: UITableViewController {
                 print("Error getting documents: \(String(describing: error))")
                 return
             }
+            
+            self?.bookIds.removeAll()
+            self?.readBooks.removeAll()
             for document in querySnapshot!.documents {
                 self?.bookIds.append(document.documentID)
                 self?.readBooks[document.documentID] = nil

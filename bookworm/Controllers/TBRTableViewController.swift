@@ -114,6 +114,8 @@ class TBRTableViewController: UITableViewController {
                 print("Error getting documents: \(String(describing: error))")
                 return
             }
+            self?.tbrBooks.removeAll()
+            self?.tbrBookIds.removeAll()
             for document in querySnapshot!.documents {
                 self?.tbrBookIds.append(document.documentID)
                 self?.tbrBooks[document.documentID] = nil
@@ -132,10 +134,12 @@ class TBRTableViewController: UITableViewController {
                 print("Error getting documents: \(String(describing: error))")
                 return
             }
+            self?.readingBooks.removeAll()
+            self?.readingBookIds.removeAll()
             for document in querySnapshot!.documents {
                 self?.readingBookIds.append(document.documentID)
                 self?.readingBooks[document.documentID] = nil
-                self?.fetchTBRResultBooks(for: document.documentID)
+                self?.fetchReadingResultBooks(for: document.documentID)
             }
         }
     }
