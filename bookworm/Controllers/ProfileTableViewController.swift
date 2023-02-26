@@ -156,6 +156,12 @@ class ProfileTableViewController: UITableViewController {
             message: "Are you sure?",
             preferredStyle: .alert)
         alert.view.tintColor = .systemPurple
+        if indexPath.row == 1 {
+            alert.addTextField { textField in
+                textField.isSecureTextEntry = true
+                textField.placeholder = "Еnter password"
+            }
+        }
         let actionCancel = UIAlertAction(
             title: "Cancel",
             style: .cancel)
@@ -165,7 +171,10 @@ class ProfileTableViewController: UITableViewController {
                 if indexPath.row == 0 {
                     self.signOutButton()
                 } else {
-                    self.deleteProfile()
+                    guard let password = alert.textFields?.first?.text as? String else {
+                        return
+                    }
+                    self.reauthenticateDelete(password)
                 }
             }
         alert.addAction(actionDestructive)
@@ -283,6 +292,7 @@ class ProfileTableViewController: UITableViewController {
         guard let userId = user?.uid as? String else {
             return
         }
+        
         user?.delete { error in
             guard error == nil else {
                 print(error!)
@@ -302,6 +312,24 @@ class ProfileTableViewController: UITableViewController {
                 }
             }
             self.signOutButton()
+        }
+    }
+    
+    func reauthenticateDelete(_ password: String) {
+        deleteProfile()
+        
+        guard let email = user?.email else {
+            return
+        }
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        user?.reauthenticate(with: credential) { result,_  in
+            guard result != nil else {
+                print(result as Any)
+                return
+            }
+            self.deleteProfile()
         }
     }
     
