@@ -15,6 +15,7 @@
 		F330A93529901E07006C8145 /* AuthorWorks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F330A93429901E07006C8145 /* AuthorWorks.swift */; };
 		F330A9372992FB46006C8145 /* TBRTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F330A9362992FB46006C8145 /* TBRTableViewController.swift */; };
 		F330A93929941213006C8145 /* ReadTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F330A93829941213006C8145 /* ReadTableViewController.swift */; };
+		F351721D29ABCB8400DB3ED6 /* ForYouTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F351721C29ABCB8400DB3ED6 /* ForYouTableViewController.swift */; };
 		F36FB5E5296C8E9C00D870DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36FB5E4296C8E9C00D870DC /* Main.storyboard */; };
 		F36FB5E7296C910500D870DC /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36FB5E6296C910500D870DC /* HomeTableViewController.swift */; };
 		F383C0EF294FB77300D0C766 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383C0EE294FB77300D0C766 /* AppDelegate.swift */; };
@@ -88,6 +89,7 @@
 		F330A93429901E07006C8145 /* AuthorWorks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorWorks.swift; sourceTree = "<group>"; };
 		F330A9362992FB46006C8145 /* TBRTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBRTableViewController.swift; sourceTree = "<group>"; };
 		F330A93829941213006C8145 /* ReadTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadTableViewController.swift; sourceTree = "<group>"; };
+		F351721C29ABCB8400DB3ED6 /* ForYouTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouTableViewController.swift; sourceTree = "<group>"; };
 		F36FB5E4296C8E9C00D870DC /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F36FB5E6296C910500D870DC /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		F383C0EB294FB77300D0C766 /* bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,8 +230,9 @@
 				F36FB5E6296C910500D870DC /* HomeTableViewController.swift */,
 				F3E319912986A08E0070E0AA /* SearchResultsTableViewController.swift */,
 				F330A9362992FB46006C8145 /* TBRTableViewController.swift */,
-				F330A93829941213006C8145 /* ReadTableViewController.swift */,
+				F351721C29ABCB8400DB3ED6 /* ForYouTableViewController.swift */,
 				F3E3198D2981BB0F0070E0AA /* ProfileTableViewController.swift */,
+				F330A93829941213006C8145 /* ReadTableViewController.swift */,
 				F3EBFBF429A3E84000AA55A4 /* DetailBookTableViewController.swift */,
 				F3EBFBFA29A5E85A00AA55A4 /* DetailAuthorTableViewController.swift */,
 				F3ADE20129A5FF58009C5E6F /* SubjectTableViewController.swift */,
@@ -377,6 +380,7 @@
 				F3EC384F29A29C2300093161 /* ReviewTableViewCell.swift in Sources */,
 				F3EBFBEF29A2B3CA00AA55A4 /* MoreBooksTableViewCell.swift in Sources */,
 				F3B290FF29635AB800934701 /* RegisterViewController.swift in Sources */,
+				F351721D29ABCB8400DB3ED6 /* ForYouTableViewController.swift in Sources */,
 				F330A9372992FB46006C8145 /* TBRTableViewController.swift in Sources */,
 				F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */,
 				F3DA25C42979CC7700EAFB8A /* BookTableViewCell.swift in Sources */,

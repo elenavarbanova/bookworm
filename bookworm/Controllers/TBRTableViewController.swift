@@ -14,8 +14,10 @@ import FirebaseFirestore
 
 class TBRTableViewController: UITableViewController {
     let backgroundViewLabel = UILabel(frame: .zero)
-    var bookIds = [String]()
+    var tbrBookIds = [String]()
+    var readingBookIds = [String]()
     var tbrBooks = [String: Displayable]()
+    var readingBooks = [String: Displayable]()
     
     enum BookList: Int {
     case tbr = 1
@@ -23,16 +25,29 @@ class TBRTableViewController: UITableViewController {
     case read = 3
     }
     
+    enum Sections: Int, CaseIterable {
+        case Reading = 0
+        case TBR = 1
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         setupTableViewBackgroundView()
-        getReadBooks()
+        getTBRBooks()
+        getReadingBooks()
     }
 
     // MARK: - Table view data source
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return Sections.allCases.count
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == Sections.Reading.rawValue {
+            return readingBooks.count
+        }
         return tbrBooks.count
     }
 
@@ -40,12 +55,19 @@ class TBRTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookTableViewCell
 
-        let eachBook = bookIds[indexPath.row]
+        var book: Displayable?
+        if indexPath.section == Sections.Reading.rawValue {
+            let eachBook = readingBookIds[indexPath.row]
+            book = readingBooks[eachBook]
+        } else {
+            let eachBook = tbrBookIds[indexPath.row]
+            book = tbrBooks[eachBook]
+        }
         
-        cell.bookTitleLabel?.text = tbrBooks[eachBook]?.titleLabelText
-        cell.authorLabel?.text = tbrBooks[eachBook]?.subtitleLabelText
+        cell.bookTitleLabel?.text = book?.titleLabelText
+        cell.authorLabel?.text = book?.subtitleLabelText
         
-        if let imageID = tbrBooks[eachBook]?.image {
+        if let imageID = book?.image {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)
             request.responseImage { response in
@@ -67,6 +89,13 @@ class TBRTableViewController: UITableViewController {
         return 100.0
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == Sections.Reading.rawValue {
+            return "Reading"
+        }
+        return "TBR"
+    }
+    
     func setupTableViewBackgroundView() {
         backgroundViewLabel.textColor = .darkGray
         backgroundViewLabel.numberOfLines = 0
@@ -75,7 +104,7 @@ class TBRTableViewController: UITableViewController {
         tableView.backgroundView = backgroundViewLabel
     }
     
-    func getReadBooks() {
+    func getTBRBooks() {
         let database = Firestore.firestore()
         guard let userId = Auth.auth().currentUser?.uid as? String else {
             return
@@ -86,22 +115,43 @@ class TBRTableViewController: UITableViewController {
                 return
             }
             for document in querySnapshot!.documents {
-                self?.bookIds.append(document.documentID)
+                self?.tbrBookIds.append(document.documentID)
                 self?.tbrBooks[document.documentID] = nil
-                self?.fetchResultBooks(for: document.documentID)
+                self?.fetchTBRResultBooks(for: document.documentID)
             }
         }
     }
 
+    func getReadingBooks() {
+        let database = Firestore.firestore()
+        guard let userId = Auth.auth().currentUser?.uid as? String else {
+            return
+        }
+        database.collection("users").document(userId).collection("books").whereField("book_state", isEqualTo: BookList.reading.rawValue).addSnapshotListener { [weak self] (querySnapshot, error) in
+            guard error == nil else {
+                print("Error getting documents: \(String(describing: error))")
+                return
+            }
+            for document in querySnapshot!.documents {
+                self?.readingBookIds.append(document.documentID)
+                self?.readingBooks[document.documentID] = nil
+                self?.fetchTBRResultBooks(for: document.documentID)
+            }
+        }
+    }
 
     
     // MARK: - Navigation
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let bookId = bookIds[indexPath.row]
-        
-        let book = self.tbrBooks[bookId]
+        let book: Displayable?
+        if indexPath.section == Sections.Reading.rawValue {
+            let bookId = readingBookIds[indexPath.row]
+            book = self.readingBooks[bookId]
+        } else {
+            let bookId = tbrBookIds[indexPath.row]
+            book = self.tbrBooks[bookId]
+        }
         
         performSegue(withIdentifier: "DetailBookSegue", sender: book)
     }
@@ -122,7 +172,7 @@ class TBRTableViewController: UITableViewController {
 }
 
 extension TBRTableViewController {
-    func fetchResultBooks(for searchText: String) {
+    func fetchTBRResultBooks(for searchText: String) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
 
@@ -143,5 +193,28 @@ extension TBRTableViewController {
                     }
                 }
             }   
+    }
+    
+    func fetchReadingResultBooks(for searchText: String) {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        let request = AF.request("https://openlibrary.org/search.json?q=\(searchText)")
+        
+        request
+            .validate()
+            .responseDecodable(of: ResultBooks.self, decoder: decoder) { [weak self] response in
+                guard response.error == nil else { return }
+                guard let books = response.value else { return }
+                
+                for book in books.resultBooks {
+                    guard let resultKey = (book.key as? NSString)?.lastPathComponent else { continue }
+                    if resultKey == searchText {
+                        self?.readingBooks[searchText] = book
+                        self?.tableView.reloadData()
+                        self?.backgroundViewLabel.isHidden = true
+                    }
+                }
+            }
     }
 }
