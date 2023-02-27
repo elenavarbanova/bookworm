@@ -22,11 +22,23 @@ class MoreBooksTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColle
         }
     }
     
+    var didSelectItemAction: ((IndexPath, Displayable?) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         bookCollectionView.delegate = self
         bookCollectionView.dataSource = self
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let bookId = bookIDs[indexPath.item]
+        
+        let book = self.books[bookId]
+        
+        didSelectItemAction?(indexPath, book)
+    }
+    
+    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -50,9 +62,9 @@ class MoreBooksTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColle
                     return
                 }
                 DispatchQueue.main.async {
-//                    if cell.imageID == imageID {
+                    if cell.imageID == imageID {
                         cell.coverImageView.image = image
-//                    }
+                    }
                 }
             }
         }

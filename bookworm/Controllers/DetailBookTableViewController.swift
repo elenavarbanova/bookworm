@@ -37,9 +37,8 @@ class DetailBookTableViewController: UITableViewController {
         case Details = 1
         case Description = 2
         case Subjects = 3
-        case MoreBooks = 4
-        case Review = 5
-        case Comments = 6
+        case Review = 4
+        case Comments = 5
     }
     
     override func viewDidLoad() {
@@ -118,10 +117,6 @@ class DetailBookTableViewController: UITableViewController {
                 for subject in 0..<countSubjects {
                     createSubjectButton(for: infoBook[0].subject[subject], for: cell)
                 }
-                return cell
-            } else if indexPath.section == Sections.MoreBooks.rawValue {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "MoreBooks", for: indexPath) as! MoreBooksTableViewCell
-                
                 return cell
             } else if indexPath.section == Sections.Review.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Review", for: indexPath) as! ReviewTableViewCell

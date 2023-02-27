@@ -40,6 +40,13 @@ class DetailAuthorTableViewController: UITableViewController {
         return 1
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == Sections.MoreBooks.rawValue {
+            return 250
+        }
+        return UITableView.automaticDimension
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == Sections.AuthorHeader.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AuthorHeader", for: indexPath) as! AuthorHeaderTableViewCell
@@ -66,6 +73,11 @@ class DetailAuthorTableViewController: UITableViewController {
         } else if indexPath.section == Sections.MoreBooks.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MoreBooks", for: indexPath) as! MoreBooksTableViewCell
             cell.bookIDs = worksIDs
+            
+            cell.didSelectItemAction = { [weak self] indexPath, book in
+                self?.performSegue(withIdentifier: "DetailBookSegue", sender: book)
+            }
+            
             return cell
         }
         return UITableViewCell()
@@ -86,15 +98,21 @@ class DetailAuthorTableViewController: UITableViewController {
 //        tableView.reloadData()
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        guard segue.identifier == "DetailBookSegue",
+              let destination = segue.destination as? DetailBookTableViewController,
+              let book = sender as? Displayable else {
+            return
+        }
+        
+        destination.book = book
+        destination.imageID = book.image
     }
-    */
 
 }
 
