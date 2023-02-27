@@ -69,6 +69,13 @@ class DetailBookTableViewController: UITableViewController {
             if indexPath.section == Sections.Header.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Header", for: indexPath) as! HeaderTableViewCell
                 
+                if cell.authorBookStackView.subviews.count != 0 {
+                    for authorView in cell.authorBookStackView.subviews {
+                        cell.authorBookStackView.removeArrangedSubview(authorView)
+                        authorView.removeFromSuperview()
+                    }
+                }
+                
                 createAddBookButton(for: cell)
                 guard let authorNames = book?.authorNames else {
                     return cell
@@ -113,6 +120,13 @@ class DetailBookTableViewController: UITableViewController {
             } else if indexPath.section == Sections.Subjects.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Subjects", for: indexPath) as! SubjectsTableViewCell
                 let countSubjects = infoBook[0].subject.count
+                
+                if cell.subjectsStackView.subviews.count != 0 {
+                    for button in cell.subjectsStackView.subviews {
+                        cell.subjectsStackView.removeArrangedSubview(button)
+                        button.removeFromSuperview()
+                    }
+                }
                 
                 for subject in 0..<countSubjects {
                     createSubjectButton(for: infoBook[0].subject[subject], for: cell)
@@ -240,8 +254,7 @@ class DetailBookTableViewController: UITableViewController {
             ReadAction
         ])
         
-        button.frame = CGRect(x: cell.addBookStackView.frame.midX, y: cell.addBookStackView.frame.midY, width: 100, height: 25)
-            
+        button.frame = CGRect(x: cell.addBookStackView.frame.midX/2, y: cell.addBookStackView.frame.midY/2, width: 100, height: 25)
         cell.addBookStackView.addSubview(button)
     }
     

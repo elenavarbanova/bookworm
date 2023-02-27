@@ -66,6 +66,14 @@ class DetailAuthorTableViewController: UITableViewController {
             guard let countNames = authorInfo?.alternateNames?.count else {
                 return cell
             }
+            
+            if cell.alternativeNamesStackView.subviews.count != 0 {
+                for namesView in cell.alternativeNamesStackView.subviews {
+                    cell.alternativeNamesStackView.removeArrangedSubview(namesView)
+                    namesView.removeFromSuperview()
+                }
+            }
+            
             for names in 0..<countNames {
                 createAlternativeNames(for: (authorInfo?.alternateNames?[names])!, for: cell)
             }
