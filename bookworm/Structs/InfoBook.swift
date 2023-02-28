@@ -20,7 +20,7 @@ struct InfoBook: Decodable {
     var language: [String]?
     var authorKey: [String]?
     var authorName: [String]?
-    var subject: [String]
+    var subject: [String]?
     var contributor: [String]?
     
     enum CodingKeys: String, CodingKey {

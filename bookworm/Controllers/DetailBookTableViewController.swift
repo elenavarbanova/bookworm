@@ -97,7 +97,7 @@ class DetailBookTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Details", for: indexPath) as! DetailsTableViewCell
                 let year = "\(String(describing: infoBook[0].firstPublishYear))"
                 cell.publishedLabel.text = year
-                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian)) pages"
+                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian!)) pages"
                 cell.pagesLabel.text = pages
                 let editions = "\(String(describing: infoBook[0].editionCount)) editions"
                 cell.editionsLabel.text = editions
@@ -114,10 +114,15 @@ class DetailBookTableViewController: UITableViewController {
                 return cell
             } else if indexPath.section == Sections.Subjects.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Subjects", for: indexPath) as! SubjectsTableViewCell
-                let countSubjects = infoBook[0].subject.count
+                
+                guard let subjects = infoBook[0].subject else {
+                    return cell
+                }
+                
+                let countSubjects = subjects.count
                 
                 for subject in 0..<countSubjects {
-                    createSubjectButton(for: infoBook[0].subject[subject], for: cell)
+                    createSubjectButton(for: subjects[subject], for: cell)
                 }
                 return cell
             } else if indexPath.section == Sections.MoreBooks.rawValue {
@@ -181,6 +186,7 @@ class DetailBookTableViewController: UITableViewController {
                 print("Error getting documents: \(String(describing: error))")
                 return
             }
+            self?.comments.removeAll()
             for document in querySnapshot!.documents {
                 let comment = Comment(aDoc: document)
                 self?.comments.append(comment)
