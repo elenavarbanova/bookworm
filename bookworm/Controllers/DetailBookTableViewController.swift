@@ -134,7 +134,12 @@ class DetailBookTableViewController: UITableViewController {
                 cell.starRatingView.didFinishTouchingCosmos = { rating in
                     self.stars = rating
                 }
-//                cell.starRatingView.settings.emptyImage = UIImage
+                
+//                let image = UIImage(systemName: "star")!.withTintColor(.systemPurple)
+                
+//                cell.starRatingView.settings.emptyImage = image//.foregroundColor(.systemPurple)
+//                .withTintColor(.systemPurple, renderingMode: .alwaysTemplate)
+                
                 return cell
             } else if indexPath.section == Sections.Comments.rawValue{
                 let comment = comments[indexPath.row]
