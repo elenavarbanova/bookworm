@@ -97,11 +97,11 @@ class DetailBookTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Details", for: indexPath) as! DetailsTableViewCell
                 let year = "\(String(describing: infoBook[0].firstPublishYear))"
                 cell.publishedLabel.text = year
-                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian!)) pages"
+                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian!))"
                 cell.pagesLabel.text = pages
-                let editions = "\(String(describing: infoBook[0].editionCount)) editions"
+                let editions = "\(String(describing: infoBook[0].editionCount))"
                 cell.editionsLabel.text = editions
-                let languages = "\(String(describing: infoBook[0].language!.count)) languages"
+                let languages = "\(String(describing: infoBook[0].language!.count))"
                 cell.languagesLabel.text = languages
                 return cell
             } else if indexPath.section == Sections.Description.rawValue {
