@@ -135,7 +135,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Header" rowHeight="201" id="L7R-mK-pb3" customClass="HeaderTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Header" rowHeight="201" id="L7R-mK-pb3" customClass="HeaderTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="55.333332061767578" width="353" height="201"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L7R-mK-pb3" id="p7d-RE-JKu">
@@ -185,7 +185,7 @@
                                     <outlet property="coverImage" destination="OlT-sQ-kT7" id="THS-x1-SeA"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Details" rowHeight="71" id="bV4-Kp-TUH" customClass="DetailsTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Details" rowHeight="71" id="bV4-Kp-TUH" customClass="DetailsTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="256.33333206176758" width="353" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bV4-Kp-TUH" id="V0j-na-0gt">
@@ -270,7 +270,7 @@
                                     <outlet property="publishedLabel" destination="gKu-ip-7z9" id="6a6-TC-nUz"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Description" rowHeight="83" id="ke3-Ua-R8N" customClass="DescriptionTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Description" rowHeight="83" id="ke3-Ua-R8N" customClass="DescriptionTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="327.33333206176758" width="353" height="83"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ke3-Ua-R8N" id="5MC-sc-jZu">
@@ -295,7 +295,7 @@
                                     <outlet property="descriptionLabel" destination="RmV-Hq-lZZ" id="Hzo-w6-sYG"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Subjects" rowHeight="118" id="YWz-Pj-TZn" customClass="SubjectsTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Subjects" rowHeight="118" id="YWz-Pj-TZn" customClass="SubjectsTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="410.33333206176758" width="353" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YWz-Pj-TZn" id="RhZ-Tt-Tah">
@@ -317,7 +317,7 @@
                                     <outlet property="subjectsStackView" destination="67I-aa-aKg" id="5PL-yz-bCE"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoreBooks" rowHeight="281" id="CvQ-Gz-mcX" customClass="MoreBooksTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoreBooks" rowHeight="281" id="CvQ-Gz-mcX" customClass="MoreBooksTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="528.33333206176758" width="353" height="281"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CvQ-Gz-mcX" id="XPu-8s-zJX">
@@ -386,7 +386,7 @@
                                     <outlet property="bookCollectionView" destination="bH5-54-agG" id="AoH-0A-Jt4"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Review" rowHeight="89" id="VuV-hN-hug" customClass="ReviewTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Review" rowHeight="89" id="VuV-hN-hug" customClass="ReviewTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="809.33333206176758" width="353" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VuV-hN-hug" id="suS-5X-Z8Z">
@@ -459,7 +459,7 @@
                                     <outlet property="starRatingView" destination="c9l-DQ-Fh1" id="Wla-Rz-5tG"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Comments" rowHeight="133" id="uG7-Bb-4Ki" customClass="CommentsTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Comments" rowHeight="133" id="uG7-Bb-4Ki" customClass="CommentsTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="898.33333206176758" width="353" height="133"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uG7-Bb-4Ki" id="VLZ-xd-dAq">
@@ -536,7 +536,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AuthorHeader" rowHeight="203" id="6mf-XF-M5C" customClass="AuthorHeaderTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AuthorHeader" rowHeight="203" id="6mf-XF-M5C" customClass="AuthorHeaderTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="55.333332061767578" width="353" height="203"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6mf-XF-M5C" id="bIq-DR-Vas">
@@ -573,7 +573,7 @@
                                     <outlet property="birthdayLabel" destination="Ial-TF-Coa" id="WWS-5Q-Zeh"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Bio" rowHeight="103" id="Zlz-xf-iHw" customClass="BioTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Bio" rowHeight="103" id="Zlz-xf-iHw" customClass="BioTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="258.33333206176758" width="353" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zlz-xf-iHw" id="yZj-OZ-PlL">
@@ -598,7 +598,7 @@
                                     <outlet property="bioLabel" destination="xxY-5e-tdj" id="FXB-71-9VB"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlternativeNames" rowHeight="133" id="b6y-2f-zC2" customClass="AlternativeNamesTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AlternativeNames" rowHeight="133" id="b6y-2f-zC2" customClass="AlternativeNamesTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="361.33333206176758" width="353" height="133"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b6y-2f-zC2" id="Kzo-SQ-CP3">
@@ -620,7 +620,7 @@
                                     <outlet property="alternativeNamesStackView" destination="ksQ-T0-QD2" id="1Pn-5s-zUh"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoreBooks" rowHeight="281" id="vid-cE-BCZ" customClass="MoreBooksTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoreBooks" rowHeight="281" id="vid-cE-BCZ" customClass="MoreBooksTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="494.33333206176758" width="353" height="281"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vid-cE-BCZ" id="jv6-qP-ujT">
@@ -1060,7 +1060,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Statistics" rowHeight="105" id="6p3-Yz-W1p" customClass="StatisticsTableViewCell" customModule="bookworm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Statistics" rowHeight="105" id="6p3-Yz-W1p" customClass="StatisticsTableViewCell" customModule="bookworm" customModuleProvider="target">
                                 <rect key="frame" x="20" y="55.333332061767578" width="353" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6p3-Yz-W1p" id="ng4-Su-nLm">
