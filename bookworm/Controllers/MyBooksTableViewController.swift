@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 
-class TBRTableViewController: UITableViewController {
+class MyBooksTableViewController: UITableViewController {
     let backgroundViewLabel = UILabel(frame: .zero)
     var tbrBookIds = [String]()
     var readingBookIds = [String]()
@@ -71,12 +71,11 @@ class TBRTableViewController: UITableViewController {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)
             request.responseImage { response in
-                guard let image = response.value else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    if cell.imageID == imageID {
-                        cell.bookCoverImage.image = image
+                if let image = response.value {
+                    DispatchQueue.main.async {
+                        if cell.imageID == imageID {
+                            cell.bookCoverImage.image = image
+                        }
                     }
                 }
             }
@@ -175,7 +174,7 @@ class TBRTableViewController: UITableViewController {
     
 }
 
-extension TBRTableViewController {
+extension MyBooksTableViewController {
     func fetchTBRResultBooks(for searchText: String) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601

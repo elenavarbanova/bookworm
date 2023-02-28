@@ -55,12 +55,11 @@ class HomeTableViewController: UITableViewController {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)
             request.responseImage { response in
-                guard let image = response.value else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    if cell.imageID == imageID {
-                        cell.bookCoverImage.image = image
+                if let image = response.value {
+                    DispatchQueue.main.async {
+                        if cell.imageID == imageID {
+                            cell.bookCoverImage.image = image
+                        }
                     }
                 }
             }

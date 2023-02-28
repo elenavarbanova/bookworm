@@ -86,9 +86,10 @@ class DetailBookTableViewController: UITableViewController {
                 
                 let request = AF.request(url, method: .get)
                 request.responseImage { response in
-                    guard let image = response.value else { return }
-                    DispatchQueue.main.async {
-                        cell.coverImage.image = image
+                    if let image = response.value {
+                        DispatchQueue.main.async {
+                            cell.coverImage.image = image
+                        }
                     }
                 }
                 return cell

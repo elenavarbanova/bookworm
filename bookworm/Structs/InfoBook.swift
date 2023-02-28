@@ -14,7 +14,7 @@ struct InfoBook: Decodable {
     var editionKey: [String]
     var publishPlace: [String]?
     var firstPublishYear: Int
-    var numberOfPagesMedian: Int
+    var numberOfPagesMedian: Int?
     var coverEditionKey: String?
     var coverI: Int?
     var language: [String]?
