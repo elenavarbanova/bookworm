@@ -131,12 +131,7 @@ class ForYouTableViewController: UITableViewController {
     }
     
     func getRandomBooks() {
-        let books: Int
-        if works.count < 10 {
-            books = 1
-        } else {
-            books = works.count / 10
-        }
+        let books = (works.count / 10) + 1
         
         for _ in 0..<books {
             let randomBook = Int.random(in: 0..<works.count)
