@@ -18,6 +18,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak private var errorLabel: UILabel!
     @IBOutlet weak private var signUpButton: UIButton!
     
+    var nickname = Nicknames()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -75,6 +77,16 @@ class RegisterViewController: UIViewController {
                     self.showError("Error creating user!")
                     return
                 }
+                
+                let nickname = self.nickname.generateNickname()
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = nickname
+                changeRequest?.commitChanges { (error) in
+                    if error == nil {
+                        self.showError("Could not change displayName")
+                    }
+                }
+                
                 if Auth.auth().currentUser != nil {
                     self.performSegue(withIdentifier: "signInSegue", sender: nil)
                     let database = Firestore.firestore()

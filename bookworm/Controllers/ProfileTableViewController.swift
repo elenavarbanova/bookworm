@@ -41,6 +41,21 @@ class ProfileTableViewController: UITableViewController {
         getBooks(list: .tbr)
         getBooks(list: .reading)
         getBooks(list: .read)
+        
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard section == 0 else { return nil }
+        guard let userNickname = user?.displayName as? String else { return nil }
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.numberOfLines = 2
+        label.font = UIFont.boldSystemFont(ofSize: 34.0)
+        label.text = userNickname
+        label.textAlignment = .left
+        label.lineBreakMode = .byWordWrapping
+        return label
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

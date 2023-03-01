@@ -24,6 +24,7 @@ class DetailBookTableViewController: UITableViewController {
     var database = Firestore.firestore()
     var comments = [Comment]()
     var stars = 0.0
+    var user = Auth.auth().currentUser
     
     //MARK: - Enums
     enum BookList: Int {
@@ -128,11 +129,11 @@ class DetailBookTableViewController: UITableViewController {
                 cell.starRatingView.didFinishTouchingCosmos = { rating in
                     self.stars = rating
                 }
-//                cell.starRatingView.settings.emptyImage = UIImage
                 return cell
             } else if indexPath.section == Sections.Comments.rawValue{
                 let comment = comments[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Comments", for: indexPath) as! CommentsTableViewCell
+                cell.userLabel.text = comment.userNickname
                 cell.commentLabel.text = comment.comment
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -252,7 +253,7 @@ class DetailBookTableViewController: UITableViewController {
     
     //MARK: - Add book to user's books
     func addBook(list: BookList) {
-        guard let userId = Auth.auth().currentUser?.uid as? String,
+        guard let userId = user?.uid as? String,
               let bookId = (book?.key as? NSString)?.lastPathComponent else {
             return
         }
@@ -285,17 +286,18 @@ class DetailBookTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as? ReviewTableViewCell
         
         guard let comment = cell?.commentTextField.text?.trimmingCharacters(in: .whitespaces),
-//              let userName = Auth.auth().currentUser?.displayName as? String,
+              let userNickname = user?.displayName as? String,
+              let userId = user?.uid as? String,
               let bookId = (book?.key as? NSString)?.lastPathComponent else {
             return
         }
 
-        self.database.collection("books").document("\(bookId)").collection("reviews").addDocument(data: [
-                "comment":comment,
-                "date":dateNow,
-//                "user_name":userName
-                "rating":stars
-            ]) { err in
+        self.database.collection("books").document("\(bookId)").collection("reviews").document("\(userId)").setData([
+            "comment":comment,
+            "date":dateNow,
+            "user_nickname":userNickname,
+            "rating":stars
+        ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
