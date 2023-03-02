@@ -37,9 +37,8 @@ class DetailBookTableViewController: UITableViewController {
         case Details = 1
         case Description = 2
         case Subjects = 3
-        case MoreBooks = 4
-        case Review = 5
-        case Comments = 6
+        case Review = 4
+        case Comments = 5
     }
     
     override func viewDidLoad() {
@@ -69,6 +68,13 @@ class DetailBookTableViewController: UITableViewController {
         if !infoBook.isEmpty {
             if indexPath.section == Sections.Header.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Header", for: indexPath) as! HeaderTableViewCell
+                
+                if cell.authorBookStackView.subviews.count != 0 {
+                    for authorView in cell.authorBookStackView.subviews {
+                        cell.authorBookStackView.removeArrangedSubview(authorView)
+                        authorView.removeFromSuperview()
+                    }
+                }
                 
                 createAddBookButton(for: cell)
                 guard let authorNames = book?.authorNames else {
@@ -121,13 +127,16 @@ class DetailBookTableViewController: UITableViewController {
                 
                 let countSubjects = subjects.count
                 
+                if cell.subjectsStackView.subviews.count != 0 {
+                    for button in cell.subjectsStackView.subviews {
+                        cell.subjectsStackView.removeArrangedSubview(button)
+                        button.removeFromSuperview()
+                    }
+                }
+                
                 for subject in 0..<countSubjects {
                     createSubjectButton(for: subjects[subject], for: cell)
                 }
-                return cell
-            } else if indexPath.section == Sections.MoreBooks.rawValue {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "MoreBooks", for: indexPath) as! MoreBooksTableViewCell
-                
                 return cell
             } else if indexPath.section == Sections.Review.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Review", for: indexPath) as! ReviewTableViewCell
@@ -260,8 +269,7 @@ class DetailBookTableViewController: UITableViewController {
             ReadAction
         ])
         
-        button.frame = CGRect(x: cell.addBookStackView.frame.midX, y: cell.addBookStackView.frame.midY, width: 100, height: 25)
-            
+        button.frame = CGRect(x: cell.addBookStackView.frame.midX/2, y: cell.addBookStackView.frame.midY/2, width: 100, height: 25)
         cell.addBookStackView.addSubview(button)
     }
     
