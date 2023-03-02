@@ -433,10 +433,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4uF-k4-fQJ">
+
                                             <rect key="frame" x="20" y="11" width="353" height="111"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWz-zH-fvw">
                                                     <rect key="frame" x="0.0" y="0.0" width="353" height="25"/>
+
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="K5d-vs-IhX"/>
                                                     </constraints>
@@ -445,7 +447,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYV-4J-hPT">
+
                                                     <rect key="frame" x="0.0" y="33" width="353" height="25"/>
+
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="foI-j3-7rn"/>
                                                     </constraints>
@@ -454,7 +458,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ab0-X9-EOL">
+
                                                     <rect key="frame" x="0.0" y="66" width="353" height="45"/>
+
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -593,10 +599,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="281"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xXy-bY-660">
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xXy-bY-660">
                                             <rect key="frame" x="20" y="11" width="353" height="259"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZaR-pL-ay1">
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZaR-pL-ay1">
                                                 <size key="itemSize" width="150" height="250"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -610,22 +616,26 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="150" height="250"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ccx-op-azh">
-                                                                <rect key="frame" x="18" y="10.333333333333329" width="114" height="228.33333333333334"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ccx-op-azh">
+                                                                <rect key="frame" x="18" y="10.333333333333329" width="120" height="229.33333333333334"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Ub-mW-PeQ">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="114" height="190"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="200"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="5Ub-mW-PeQ" secondAttribute="height" multiplier="3:5" id="BRi-Pb-htu"/>
+                                                                            <constraint firstAttribute="height" constant="200" id="RZg-5O-99w"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDc-Xm-iWi">
-                                                                        <rect key="frame" x="0.0" y="208" width="114" height="20.333333333333343"/>
+                                                                        <rect key="frame" x="0.0" y="208" width="120" height="21.333333333333343"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="5Ub-mW-PeQ" firstAttribute="height" secondItem="bDc-Xm-iWi" secondAttribute="height" multiplier="9.34426" id="VSw-rU-lKH"/>
+                                                                </constraints>
                                                             </stackView>
                                                         </subviews>
                                                     </collectionViewCellContentView>
@@ -656,6 +666,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="1gx-0h-Mf2"/>
+                    <connections>
+                        <segue destination="XUa-0i-hAC" kind="show" identifier="DetailBookSegue" id="GHQ-Zp-LWE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GqR-tG-eFT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
