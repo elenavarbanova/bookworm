@@ -248,8 +248,8 @@ class Nicknames {
     ]
     
     func generateNickname() -> String {
-        var randomAjective = Int.random(in: 0..<adjectives.count)
-        var randomSurname = Int.random(in: 0..<surnames.count)
+        let randomAjective = Int.random(in: 0..<adjectives.count)
+        let randomSurname = Int.random(in: 0..<surnames.count)
         
         return "\(adjectives[randomAjective])_\(surnames[randomSurname])"
     }
