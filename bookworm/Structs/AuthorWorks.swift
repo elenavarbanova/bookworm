@@ -8,8 +8,7 @@
 import Foundation
 
 struct AuthorWorks: Decodable {
-    var title: String
-    var covers: [Int]?
+    var key: String
 }
 
 struct Works: Decodable {

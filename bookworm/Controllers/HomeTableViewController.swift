@@ -77,7 +77,7 @@ class HomeTableViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
         
         guard segue.identifier == "DetailBookSegue",
-              let destination = segue.destination as? DetailBookViewController,
+              let destination = segue.destination as? DetailBookTableViewController,
               let book = sender as? Displayable else {
             return
         }
