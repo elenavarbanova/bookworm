@@ -62,7 +62,6 @@ class MoreBooksTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColle
                     return
                 }
                 DispatchQueue.main.async {
-
                     if cell.imageID == imageID {
                         cell.coverImageView.image = image
                     }
