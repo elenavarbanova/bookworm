@@ -93,9 +93,10 @@ class DetailBookTableViewController: UITableViewController {
                 
                 let request = AF.request(url, method: .get)
                 request.responseImage { response in
-                    guard let image = response.value else { return }
-                    DispatchQueue.main.async {
-                        cell.coverImage.image = image
+                    if let image = response.value {
+                        DispatchQueue.main.async {
+                            cell.coverImage.image = image
+                        }
                     }
                 }
                 return cell
@@ -103,11 +104,11 @@ class DetailBookTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Details", for: indexPath) as! DetailsTableViewCell
                 let year = "\(String(describing: infoBook[0].firstPublishYear))"
                 cell.publishedLabel.text = year
-                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian)) pages"
+                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian!))"
                 cell.pagesLabel.text = pages
-                let editions = "\(String(describing: infoBook[0].editionCount)) editions"
+                let editions = "\(String(describing: infoBook[0].editionCount))"
                 cell.editionsLabel.text = editions
-                let languages = "\(String(describing: infoBook[0].language!.count)) languages"
+                let languages = "\(String(describing: infoBook[0].language!.count))"
                 cell.languagesLabel.text = languages
                 return cell
             } else if indexPath.section == Sections.Description.rawValue {
@@ -120,7 +121,13 @@ class DetailBookTableViewController: UITableViewController {
                 return cell
             } else if indexPath.section == Sections.Subjects.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Subjects", for: indexPath) as! SubjectsTableViewCell
-                let countSubjects = infoBook[0].subject.count
+                
+
+                guard let subjects = infoBook[0].subject else {
+                    return cell
+                }
+                
+                let countSubjects = subjects.count
                 
                 if cell.subjectsStackView.subviews.count != 0 {
                     for button in cell.subjectsStackView.subviews {
@@ -130,7 +137,7 @@ class DetailBookTableViewController: UITableViewController {
                 }
                 
                 for subject in 0..<countSubjects {
-                    createSubjectButton(for: infoBook[0].subject[subject], for: cell)
+                    createSubjectButton(for: subjects[subject], for: cell)
                 }
                 return cell
             } else if indexPath.section == Sections.Review.rawValue {
@@ -190,6 +197,7 @@ class DetailBookTableViewController: UITableViewController {
                 print("Error getting documents: \(String(describing: error))")
                 return
             }
+            self?.comments.removeAll()
             for document in querySnapshot!.documents {
                 let comment = Comment(aDoc: document)
                 self?.comments.append(comment)
@@ -237,14 +245,17 @@ class DetailBookTableViewController: UITableViewController {
         
         let TBRAction = UIAction(title: "TBR", handler: { [weak self] action in
             self?.addBook(list: .tbr)
+            self?.addAuthor()
         })
         
         let CRAction = UIAction(title: "Currently reading", handler: { [weak self] action in
             self?.addBook(list: .reading)
+            self?.addAuthor()
         })
         
         let ReadAction = UIAction(title: "Read", handler: { [weak self] action in
             self?.addBook(list: .read)
+            self?.addAuthor()
         })
         
 //        action.image = UIImage(systemName: "checkmark")
@@ -257,6 +268,29 @@ class DetailBookTableViewController: UITableViewController {
         
         button.frame = CGRect(x: cell.addBookStackView.frame.midX/2, y: cell.addBookStackView.frame.midY/2, width: 100, height: 25)
         cell.addBookStackView.addSubview(button)
+    }
+    
+    func addAuthor() {
+        guard let userId = Auth.auth().currentUser?.uid as? String else {
+            return
+        }
+        
+        guard let authorIDs = book?.authorKeys else {
+            return
+        }
+        
+        let countIDs = authorIDs.count
+        
+        for auth in 0..<countIDs {
+            let authorID = (authorIDs[auth] as NSString).lastPathComponent
+            database.collection("users/").document("\(userId)").collection("authors").document("\(authorID)").setData([:]) { err in
+                guard err == nil else {
+                    print("Error writing document: \(String(describing: err))")
+                    return
+                }
+                print("Author successfully added!")
+            }
+        }
     }
     
     //MARK: - Add book to user's books

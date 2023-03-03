@@ -49,12 +49,11 @@ class ReadTableViewController: UITableViewController {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)
             request.responseImage { response in
-                guard let image = response.value else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    if cell.imageID == imageID {
-                        cell.bookCoverImage.image = image
+                if let image = response.value {
+                    DispatchQueue.main.async {
+                        if cell.imageID == imageID {
+                            cell.bookCoverImage.image = image
+                        }
                     }
                 }
             }
@@ -85,6 +84,9 @@ class ReadTableViewController: UITableViewController {
                 print("Error getting documents: \(String(describing: error))")
                 return
             }
+            
+            self?.bookIds.removeAll()
+            self?.readBooks.removeAll()
             for document in querySnapshot!.documents {
                 self?.bookIds.append(document.documentID)
                 self?.readBooks[document.documentID] = nil
@@ -135,7 +137,7 @@ extension ReadTableViewController {
                 guard let books = response.value else { return }
                 
                 for book in books.resultBooks {
-                    guard let resultKey = (book.key as? NSString)?.lastPathComponent else { continue }
+                    let resultKey = (book.key as NSString).lastPathComponent
                     if resultKey == searchText {
                         self?.readBooks[searchText] = book
                         self?.tableView.reloadData()

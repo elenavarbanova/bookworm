@@ -27,9 +27,9 @@ class ProfileTableViewController: UITableViewController {
     }
     
     enum BookList: Int {
-    case tbr = 1
-    case reading = 2
-    case read = 3
+        case tbr = 1
+        case reading = 2
+        case read = 3
     }
     
     var changeNickname = ["Give me a new nickname", "Custom nickname"]
@@ -66,21 +66,28 @@ class ProfileTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == Sections.Statistics.rawValue {
-            return 1
-        } else {
-            return 2
-        }
+       return 2
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == Sections.Statistics.rawValue {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Statistics", for: indexPath) as! StatisticsTableViewCell
-            cell.TBRLabel.text = "\(TBRBooks)"
-            cell.ReadingLabel.text = "\(readingBooks)"
-            cell.ReadLabel.text = "\(readBooks)"
-            return cell
+
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Statistics", for: indexPath) as! StatisticsTableViewCell
+                cell.TBRLabel.text = "\(TBRBooks)"
+                cell.ReadingLabel.text = "\(readingBooks)"
+                cell.ReadLabel.text = "\(readBooks)"
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath)
+                var content = cell.defaultContentConfiguration()
+                content.textProperties.color = .systemPurple
+                content.textProperties.alignment = .center
+                content.text = "Read books"
+                cell.contentConfiguration = content
+                return cell
+            }
         } else if indexPath.section == Sections.ChangeNickname.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath)
             var content = cell.defaultContentConfiguration()
@@ -114,7 +121,7 @@ class ProfileTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == Sections.Statistics.rawValue {
+        if indexPath.section == Sections.Statistics.rawValue, indexPath.row == 0 {
             return 100
         }
         return 50
@@ -254,7 +261,11 @@ class ProfileTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == Sections.ChangeNickname.rawValue {
+        if indexPath.section == Sections.Statistics.rawValue {
+            if indexPath.row == 1{
+                performSegue(withIdentifier: "showReadBooks", sender: nil)
+            }
+        } else if indexPath.section == Sections.ChangeNickname.rawValue {
             changeNickname(indexPath)
         } else if indexPath.section == Sections.UpdateProfile.rawValue {
             updateProfileAlert(indexPath)
@@ -366,25 +377,26 @@ class ProfileTableViewController: UITableViewController {
             return
         }
         
-        user?.delete { error in
+        user?.delete { [weak self] error in
             guard error == nil else {
                 print(error!)
                 return
             }
 
-            self.database.collection("users").document(userId).collection("books").getDocuments(completion: { querySnapshot, error in
-                for document in querySnapshot!.documents {
+            self?.database.collection("users").document(userId).collection("books").getDocuments(completion: { querySnapshot, error in
+                
+                querySnapshot?.documents.forEach({ document in
                     document.reference.delete()
-                }
+                })
             })
             
-            self.database.collection("users").document(userId).delete() { error in
+            self?.database.collection("users").document(userId).delete() { error in
                 guard error == nil else {
                     print(error!)
                     return
                 }
             }
-            self.signOutButton()
+            self?.signOutButton()
         }
     }
     

@@ -14,13 +14,13 @@ struct InfoBook: Decodable {
     var editionKey: [String]
     var publishPlace: [String]?
     var firstPublishYear: Int
-    var numberOfPagesMedian: Int
+    var numberOfPagesMedian: Int?
     var coverEditionKey: String?
     var coverI: Int?
     var language: [String]?
     var authorKey: [String]?
     var authorName: [String]?
-    var subject: [String]
+    var subject: [String]?
     var contributor: [String]?
     
     enum CodingKeys: String, CodingKey {
