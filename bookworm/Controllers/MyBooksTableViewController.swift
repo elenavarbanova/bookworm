@@ -20,9 +20,9 @@ class MyBooksTableViewController: UITableViewController {
     var readingBooks = [String: Displayable]()
     
     enum BookList: Int {
-    case tbr = 1
-    case reading = 2
-    case read = 3
+        case tbr = 1
+        case reading = 2
+        case read = 3
     }
     
     enum Sections: Int, CaseIterable {
@@ -115,11 +115,12 @@ class MyBooksTableViewController: UITableViewController {
             }
             self?.tbrBooks.removeAll()
             self?.tbrBookIds.removeAll()
-            for document in querySnapshot!.documents {
+            
+            querySnapshot?.documents.forEach({ document in
                 self?.tbrBookIds.append(document.documentID)
                 self?.tbrBooks[document.documentID] = nil
                 self?.fetchTBRResultBooks(for: document.documentID)
-            }
+            })
         }
     }
 
@@ -187,8 +188,8 @@ extension MyBooksTableViewController {
                 guard response.error == nil else { return }
                 guard let books = response.value else { return }
                 
-                for book in books.resultBooks {
-                    guard let resultKey = (book.key as? NSString)?.lastPathComponent else { continue }
+                books.resultBooks.forEach { book in
+                    let resultKey = (book.key as NSString).lastPathComponent
                     if resultKey == searchText {
                         self?.tbrBooks[searchText] = book
                         self?.tableView.reloadData()
@@ -210,8 +211,8 @@ extension MyBooksTableViewController {
                 guard response.error == nil else { return }
                 guard let books = response.value else { return }
                 
-                for book in books.resultBooks {
-                    guard let resultKey = (book.key as? NSString)?.lastPathComponent else { continue }
+                books.resultBooks.forEach { book in
+                    let resultKey = (book.key as NSString).lastPathComponent
                     if resultKey == searchText {
                         self?.readingBooks[searchText] = book
                         self?.tableView.reloadData()

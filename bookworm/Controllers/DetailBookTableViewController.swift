@@ -285,9 +285,7 @@ class DetailBookTableViewController: UITableViewController {
         let countIDs = authorIDs.count
         
         for auth in 0..<countIDs {
-            guard let authorID = (authorIDs[auth] as? NSString)?.lastPathComponent else {
-                continue
-            }
+            let authorID = (authorIDs[auth] as NSString).lastPathComponent
             database.collection("users/").document("\(userId)").collection("authors").document("\(authorID)").setData([:]) { err in
                 guard err == nil else {
                     print("Error writing document: \(String(describing: err))")

@@ -32,7 +32,7 @@ class ForYouTableViewController: UITableViewController {
         worksIDs.removeAll()
         recommendedBooks.removeAll()
         recommendedIDs.removeAll()
-        for authorId in authorIds {
+        authorIds.forEach { authorId in
             fetchBooksByAuthor(for: authorId)
         }
         sender.endRefreshing()
@@ -178,7 +178,7 @@ extension ForYouTableViewController {
                 guard let books = response.value else { return }
                 
                 for book in books.resultBooks {
-                    guard let resultKey = (book.key as? NSString)?.lastPathComponent else { continue }
+                    let resultKey = (book.key as NSString).lastPathComponent
                     if resultKey == searchText {
                         self?.recommendedBooks[searchText] = book
                         self?.tableView.reloadData()

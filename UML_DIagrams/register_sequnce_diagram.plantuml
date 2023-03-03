@@ -1,0 +1,18 @@
+@startuml
+
+ -> App: Enter Email and password
+
+App -> App: Verify Email and password
+
+App -> Firebase: Authentication Request
+alt Failure
+
+
+Firebase --> App: Authentication Response
+else Successful case
+
+Firebase --> App: Authentication Response
+end
+
+Firebase -> Firestore: Create user document
+@enduml

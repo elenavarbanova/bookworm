@@ -137,7 +137,7 @@ extension ReadTableViewController {
                 guard let books = response.value else { return }
                 
                 for book in books.resultBooks {
-                    guard let resultKey = (book.key as? NSString)?.lastPathComponent else { continue }
+                    let resultKey = (book.key as NSString).lastPathComponent
                     if resultKey == searchText {
                         self?.readBooks[searchText] = book
                         self?.tableView.reloadData()

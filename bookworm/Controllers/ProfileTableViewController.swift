@@ -25,9 +25,9 @@ class ProfileTableViewController: UITableViewController {
     }
     
     enum BookList: Int {
-    case tbr = 1
-    case reading = 2
-    case read = 3
+        case tbr = 1
+        case reading = 2
+        case read = 3
     }
     
     var updateProfile = ["Change Email", "Change password"]
@@ -303,25 +303,26 @@ class ProfileTableViewController: UITableViewController {
             return
         }
         
-        user?.delete { error in
+        user?.delete { [weak self] error in
             guard error == nil else {
                 print(error!)
                 return
             }
 
-            self.database.collection("users").document(userId).collection("books").getDocuments(completion: { querySnapshot, error in
-                for document in querySnapshot!.documents {
+            self?.database.collection("users").document(userId).collection("books").getDocuments(completion: { querySnapshot, error in
+                
+                querySnapshot?.documents.forEach({ document in
                     document.reference.delete()
-                }
+                })
             })
             
-            self.database.collection("users").document(userId).delete() { error in
+            self?.database.collection("users").document(userId).delete() { error in
                 guard error == nil else {
                     print(error!)
                     return
                 }
             }
-            self.signOutButton()
+            self?.signOutButton()
         }
     }
     

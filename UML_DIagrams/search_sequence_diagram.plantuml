@@ -1,0 +1,17 @@
+@startuml
+
+ -> App: Enter symbol/s
+note left: Cancel for next Request
+
+
+App -> API: Search Request
+note left:Save Request
+alt Failure
+
+API --> App: Search Response
+else Successful case
+
+API --> App: Search Response
+end
+
+@enduml
