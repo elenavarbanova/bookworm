@@ -18,6 +18,7 @@ class SearchResultsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         setupSearchBar()
         setupTableViewBackgroundView()
     }

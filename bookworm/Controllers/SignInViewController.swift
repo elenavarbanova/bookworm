@@ -47,6 +47,8 @@ class SignInViewController: UIViewController {
                 }
                 self.performSegue(withIdentifier: "signInSegue", sender: nil)
             }
+            emailTextField.text?.removeAll()
+            passwordTextField.text?.removeAll()
         }
     }
 }
