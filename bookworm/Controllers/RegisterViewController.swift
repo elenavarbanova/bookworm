@@ -49,7 +49,7 @@ class RegisterViewController: UIViewController {
     }
     
     private func checkPassword(_ password: String) -> Bool {
-        let passwordRegEx = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Za-z])(?=.*[@$!%*#?&])(?=.*[A-Z])[A-Za-z\\d@$!%*#?&]{8,}")
+        let passwordRegEx = NSPredicate(format: "SELF MATCHES %@", "(?=.*[a-z].*)(?=.*[A-Z])(?=.*[-@$!%*#?&].*).{8,}")
         return passwordRegEx.evaluate(with: password)
     }
     

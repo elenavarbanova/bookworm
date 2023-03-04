@@ -51,7 +51,8 @@ class HomeTableViewController: UITableViewController {
         cell.bookTitleLabel?.text = eachBook.titleLabelText
         cell.authorLabel?.text = eachBook.subtitleLabelText
         
-        cell.bookCoverImage.image = UIImage(systemName: "book.closed")
+        cell.bookCoverImage.image = UIImage(systemName: "book.closed")?.withTintColor(.label /*.systemGray*/, renderingMode: .alwaysTemplate)
+        cell.bookCoverImage.backgroundColor = .systemGray4
         if let imageID = eachBook.image {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)

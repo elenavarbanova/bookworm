@@ -10,7 +10,11 @@ import UIKit
 class BookCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var coverImageView: UIImageView! {
+        didSet {
+            coverImageView.layer.cornerRadius = 5
+        }
+    }
     var imageID: String?
     
     override func prepareForReuse() {

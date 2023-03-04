@@ -54,6 +54,9 @@ class MoreBooksTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColle
         let eachBook = bookIDs[indexPath.row]
         cell.titleLabel.text = books[eachBook]?.titleLabelText
         
+        cell.coverImageView.image = UIImage(systemName: "book.closed")?.withTintColor(.label /*.systemGray*/, renderingMode: .alwaysTemplate)
+        cell.coverImageView.backgroundColor = .systemGray4
+        
         if let imageID = books[eachBook]?.image {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)

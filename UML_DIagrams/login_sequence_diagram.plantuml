@@ -4,21 +4,19 @@ actor User
 participant App as "Bookworm"
 participant API as "Open Library API"
 
-User -> App: Create profile with\nemail and password
+User -> App: Log in with\nemail and password
 App -> App: Verify credentials
-App -> Firebase: Register user
+App -> Firebase: Attempt login
 
 alt Success
 
-    Firebase --> App: Successful profile creation
-    App -> Firestore: Create user document containing user data
-    App <-- Firestore
+    Firebase --> App: Login success
     User <- App: Logged in
     note right of User: User is redirected to\nhome screen
 
 else Failure
 
-    Firebase --> App: Error creating profile
+    Firebase --> App: Login error
     User <- App: Display error
 
 end

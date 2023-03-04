@@ -9,7 +9,11 @@ import UIKit
 
 class AuthorHeaderTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var authorPhotoImage: UIImageView!
+    @IBOutlet weak var authorPhotoImage: UIImageView! {
+        didSet {
+            authorPhotoImage.layer.cornerRadius = 5
+        }
+    }
     @IBOutlet weak var birthdayLabel: UILabel!
     
 }

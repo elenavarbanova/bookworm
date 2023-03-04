@@ -10,6 +10,10 @@ import UIKit
 class HeaderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var addBookStackView: UIStackView!
-    @IBOutlet weak var coverImage: UIImageView!
+    @IBOutlet weak var coverImage: UIImageView! {
+        didSet {
+            coverImage.layer.cornerRadius = 5
+        }
+    }
     @IBOutlet weak var authorBookStackView: UIStackView!
 }

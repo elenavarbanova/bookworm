@@ -1,0 +1,31 @@
+@startuml
+
+actor User
+participant App as "Bookworm"
+participant API as "Open Library API"
+
+== User history ==
+
+User -> App: Adding book to my books
+App -> Firestore: Save book and author identificator
+
+== Generate user recommendations ==
+
+User -> App: Open recommendations
+
+App -> Firestore: Retrieve user preferences
+Firestore --> App
+
+group Acquire recommendations information
+    App -> API: Get relavant author info
+    API --> App
+    App -> API: Get relavant book info
+    API --> App
+    ... more requests... ...
+end 
+
+App -> App: Determine books to display
+
+User <- App: Display recommendations
+
+@enduml

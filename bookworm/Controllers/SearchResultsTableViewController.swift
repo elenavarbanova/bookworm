@@ -144,6 +144,7 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         items.removeAll()
         tableView.reloadData()
+        tableView.backgroundView = backgroundViewLabel
         backgroundViewLabel.isHidden = false
     }
 }

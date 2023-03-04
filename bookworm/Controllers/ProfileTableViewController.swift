@@ -146,6 +146,7 @@ class ProfileTableViewController: UITableViewController {
             alert.view.tintColor = .systemPurple
             alert.addTextField { textField in
                 textField.placeholder = "Enter new nickname"
+                textField.textContentType = .nickname
             }
             let actionCancel = UIAlertAction(
                 title: "Cancel",
@@ -181,24 +182,29 @@ class ProfileTableViewController: UITableViewController {
         if indexPath.row == 0 {
             alert.addTextField { textField in
                 textField.placeholder = self.updates[indexPath.row]
+                textField.textContentType = .username
             }
             alert.addTextField { textField in
                 textField.isSecureTextEntry = true
                 textField.placeholder = "Еnter current password"
+                textField.textContentType = .password
             }
         }
         if indexPath.row == 1 {
             alert.addTextField { textField in
                 textField.isSecureTextEntry = true
                 textField.placeholder = "Еnter current password"
+                textField.textContentType = .password
             }
             alert.addTextField { textField in
                 textField.isSecureTextEntry = true
                 textField.placeholder = "Еnter new password"
+                textField.textContentType = .newPassword
             }
             alert.addTextField { textField in
                 textField.isSecureTextEntry = true
                 textField.placeholder = self.updates[indexPath.row]
+                textField.textContentType = .newPassword
             }
         }
         let actionCancel = UIAlertAction(
@@ -238,6 +244,7 @@ class ProfileTableViewController: UITableViewController {
             alert.addTextField { textField in
                 textField.isSecureTextEntry = true
                 textField.placeholder = "Еnter password"
+                textField.textContentType = .password
             }
         }
         let actionCancel = UIAlertAction(

@@ -1,17 +1,27 @@
 @startuml
 
- -> App: Enter symbol/s
-note left: Cancel for next Request
+actor User
+participant App as "Bookworm"
+participant API as "Open Library API"
 
+User -> App: Start search by\nentering character(s)
 
-App -> API: Search Request
-note left:Save Request
-alt Failure
+App -> API: Request search
+App -> App: Save request
+User <-- App: Show loading 
 
-API --> App: Search Response
-else Successful case
+group Optional [User types more characters]
 
-API --> App: Search Response
+    User -> App: More characters
+    App -> App: Cancel previous request
+    App -> API: Request new search
+    App -> App: Save new request
+
 end
+
+...
+
+App <-- API: Search response
+User <-- App: Display results
 
 @enduml

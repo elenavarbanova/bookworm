@@ -124,7 +124,7 @@ class DetailBookTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Details", for: indexPath) as! DetailsTableViewCell
                 let year = "\(String(describing: infoBook[0].firstPublishYear))"
                 cell.publishedLabel.text = year
-                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian!))"
+                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian!))" // crash, fix with if let
                 cell.pagesLabel.text = pages
                 let editions = "\(String(describing: infoBook[0].editionCount))"
                 cell.editionsLabel.text = editions
@@ -171,12 +171,13 @@ class DetailBookTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Comments", for: indexPath) as! CommentsTableViewCell
                 cell.userLabel.text = comment.userNickname
                 cell.commentLabel.text = comment.comment
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-
-                let date = comment.date
-                let dateString = dateFormatter.string(from: date)
-                cell.dateLabel.text = dateString
+                
+                let formatter = DateComponentsFormatter()
+                formatter.unitsStyle = .abbreviated
+                formatter.maximumUnitCount = 1
+                if let formatted = formatter.string(from: comment.date, to: Date()) {
+                    cell.dateLabel.text = "\(formatted) ago"
+                }
                 return cell
             }
         }
@@ -231,7 +232,7 @@ class DetailBookTableViewController: UITableViewController {
         button.configuration = .plain()
 
         button.setTitle(title, for: .normal)
-        button.setTitleColor(.purple, for: .normal)
+        button.setTitleColor(.systemPurple, for: .normal)
         button.addTarget(self, action: #selector(subjectButtonTapped(_:)), for: .touchUpInside)
         
         cell.subjectsStackView.addArrangedSubview(button)
@@ -247,7 +248,7 @@ class DetailBookTableViewController: UITableViewController {
             button.setTitle(title, for: .normal)
         }
 
-        button.setTitleColor(.purple, for: .normal)
+        button.setTitleColor(.systemPurple, for: .normal)
         button.addTarget(self, action: #selector(authorButtonTapped(_:)), for: .touchUpInside)
         
         cell.authorBookStackView.addArrangedSubview(button)
