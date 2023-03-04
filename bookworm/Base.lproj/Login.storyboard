@@ -35,6 +35,7 @@
                                         </state>
                                         <buttonConfiguration key="configuration" style="filled" title="Sign in">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                            <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <segue destination="kdK-IY-Ujt" kind="show" id="rTC-xl-2wS"/>
@@ -88,7 +89,7 @@
             </objects>
             <point key="canvasLocation" x="733.58778625954199" y="-368.3098591549296"/>
         </scene>
-        <!--Register View Controller-->
+        <!--Sign up-->
         <scene sceneID="iIC-4M-gRP">
             <objects>
                 <viewController id="4tf-C0-MPT" customClass="RegisterViewController" customModule="bookworm" customModuleProvider="target" sceneMemberID="viewController">
@@ -147,6 +148,7 @@
                                         </state>
                                         <buttonConfiguration key="configuration" style="filled" title="Sign up">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                            <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signUpTappedButton:" destination="4tf-C0-MPT" eventType="touchUpInside" id="Lbu-hL-6F8"/>
@@ -195,7 +197,7 @@
                             <constraint firstItem="WtU-YD-hBc" firstAttribute="leading" secondItem="v7d-sO-AnY" secondAttribute="leading" constant="30" id="wMD-8I-m2s"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="UWv-um-6JY"/>
+                    <navigationItem key="navigationItem" title="Sign up" id="UWv-um-6JY"/>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="gyg-KZ-kSu" id="JAr-zb-fZ9"/>
                         <outlet property="emailTextField" destination="H9R-vf-eZn" id="kMd-mh-k9d"/>
@@ -220,7 +222,7 @@
             </objects>
             <point key="canvasLocation" x="2494" y="-368"/>
         </scene>
-        <!--Sign In View Controller-->
+        <!--Sign in-->
         <scene sceneID="yZv-m8-pm4">
             <objects>
                 <viewController id="kdK-IY-Ujt" customClass="SignInViewController" customModule="bookworm" customModuleProvider="target" sceneMemberID="viewController">
@@ -277,6 +279,7 @@
                                         </state>
                                         <buttonConfiguration key="configuration" style="filled" title="Sign in">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                            <color key="baseBackgroundColor" systemColor="systemPurpleColor"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="signInTappedButton:" destination="kdK-IY-Ujt" eventType="touchUpInside" id="i7S-DR-wb5"/>
@@ -325,7 +328,7 @@
                             <constraint firstItem="7pC-tO-cMV" firstAttribute="trailing" secondItem="1KG-6m-nPw" secondAttribute="trailing" constant="30" id="gg8-zL-xpE"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="uuE-SW-gvU"/>
+                    <navigationItem key="navigationItem" title="Sign in" id="uuE-SW-gvU"/>
                     <connections>
                         <outlet property="emailTextField" destination="EtD-Gm-gFU" id="6rH-OL-D5F"/>
                         <outlet property="errorLabel" destination="f4I-Ur-SxF" id="EEu-qd-UJm"/>
@@ -358,10 +361,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="QuO-XS-x85"/>
+        <segue reference="5MY-iz-hzS"/>
         <segue reference="DgB-jM-4he"/>
         <segue reference="e4u-hK-9mh"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" systemColor="systemPurpleColor"/>
     <resources>
         <image name="books.vertical.fill" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">

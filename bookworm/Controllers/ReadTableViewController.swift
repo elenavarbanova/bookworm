@@ -44,7 +44,7 @@ class ReadTableViewController: UITableViewController {
         
         cell.bookTitleLabel?.text = readBooks[eachBook]?.titleLabelText
         cell.authorLabel?.text = readBooks[eachBook]?.subtitleLabelText
-        
+        cell.bookCoverImage.image = UIImage(systemName: "book.closed")
         if let imageID = readBooks[eachBook]?.image {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)

@@ -37,7 +37,7 @@ class RegisterViewController: UIViewController {
             
         let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if checkPassword(cleanedPassword) == false {
-            return "The password does not meet the password policy requirements!"
+            return "The password must contain: \na special symbol \na capital letter \na lowercase letter \na number \nminimum 8 characters"
         }
         
         let cleanedEmail = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -49,7 +49,7 @@ class RegisterViewController: UIViewController {
     }
     
     private func checkPassword(_ password: String) -> Bool {
-        let passwordRegEx = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}")
+        let passwordRegEx = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Za-z])(?=.*[@$!%*#?&])(?=.*[A-Z])[A-Za-z\\d@$!%*#?&]{8,}")
         return passwordRegEx.evaluate(with: password)
     }
     
@@ -59,6 +59,7 @@ class RegisterViewController: UIViewController {
     }
     
     func showError(_ errorMessage: String) {
+        errorLabel.numberOfLines = 0
         errorLabel.text = errorMessage
         errorLabel.alpha = 1
     }

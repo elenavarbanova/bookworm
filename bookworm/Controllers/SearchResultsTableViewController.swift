@@ -15,6 +15,7 @@ class SearchResultsTableViewController: UITableViewController {
     var items = [Displayable]()
     var currentSearchRequest: DataRequest? = nil
     let backgroundViewLabel = UILabel(frame: .zero)
+    let activityIndicator = UIActivityIndicatorView(frame: .zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +35,16 @@ class SearchResultsTableViewController: UITableViewController {
     func setupTableViewBackgroundView() {
         backgroundViewLabel.textColor = .darkGray
         backgroundViewLabel.numberOfLines = 0
-        backgroundViewLabel.text = "Oops, No results to show!"
+        backgroundViewLabel.text = "Start typing to display search results..."
         backgroundViewLabel.textAlignment = NSTextAlignment.center
         tableView.backgroundView = backgroundViewLabel
+    }
+    
+    func setupTableViewBackgroundViewSearching() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+        tableView.backgroundView = activityIndicator
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -72,7 +80,7 @@ class SearchResultsTableViewController: UITableViewController {
         let eachBook = items[indexPath.row]
         cell.bookTitleLabel?.text = eachBook.titleLabelText
         cell.authorLabel?.text = eachBook.subtitleLabelText
-        
+        cell.bookCoverImage.image = UIImage(systemName: "book.closed")
         if let imageID = eachBook.image {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)
@@ -109,6 +117,8 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
         currentSearchRequest?.cancel()
         currentSearchRequest = nil
         
+        setupTableViewBackgroundViewSearching()
+        
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let searchString = searchText.replacingOccurrences(of: " ", with: "+")
@@ -122,6 +132,7 @@ extension SearchResultsTableViewController: UISearchBarDelegate {
                 guard response.error == nil else { return }
                 guard let books = response.value else { return }
                 
+                self?.activityIndicator.stopAnimating()
                 self?.items = books.resultBooks
                 self?.tableView.reloadData()
                 self?.backgroundViewLabel.isHidden = true

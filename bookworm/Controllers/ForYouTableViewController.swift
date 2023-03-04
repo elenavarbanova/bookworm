@@ -64,7 +64,7 @@ class ForYouTableViewController: UITableViewController {
         
         cell.bookTitleLabel?.text = recommendedBooks[eachBook]?.titleLabelText
         cell.authorLabel?.text = recommendedBooks[eachBook]?.subtitleLabelText
-        
+        cell.bookCoverImage.image = UIImage(systemName: "book.closed")
         if let imageID = recommendedBooks[eachBook]?.image {
             cell.imageID = imageID
             let request = AF.request(imageID, method: .get)

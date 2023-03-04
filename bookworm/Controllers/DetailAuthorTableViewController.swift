@@ -16,11 +16,20 @@ class DetailAuthorTableViewController: UITableViewController {
     var authorName = String()
     var works = [AuthorWorks]()
     var worksIDs = [String]()
+    let activityIndicator = UIActivityIndicatorView(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableViewBackgroundView()
         fetchAuthorInfo()
         navigationItem.title = authorName
+    }
+    
+    func setupTableViewBackgroundView() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+        tableView.backgroundView = activityIndicator
     }
     
     enum Sections: Int, CaseIterable {
@@ -33,6 +42,9 @@ class DetailAuthorTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if authorInfo == nil {
+            return 0
+        }
         return Sections.allCases.count
     }
 
@@ -51,7 +63,7 @@ class DetailAuthorTableViewController: UITableViewController {
         if indexPath.section == Sections.AuthorHeader.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "AuthorHeader", for: indexPath) as! AuthorHeaderTableViewCell
             cell.birthdayLabel.text = authorInfo?.birthDate
-            
+            cell.authorPhotoImage.image = UIImage(systemName: "person.fill")
             return cell
         } else if indexPath.section == Sections.Bio.rawValue {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Bio", for: indexPath) as! BioTableViewCell
@@ -153,6 +165,7 @@ extension DetailAuthorTableViewController {
                         cell?.authorPhotoImage.image = image
                         self?.tableView.reloadData()
                     }
+                    self?.activityIndicator.stopAnimating()
                 }
              }
         

@@ -25,6 +25,8 @@ class DetailBookTableViewController: UITableViewController {
     var comments = [Comment]()
     var stars = 0.0
     var user = Auth.auth().currentUser
+    let activityIndicator = UIActivityIndicatorView(frame: .zero)
+    var stateBook = 0
     
     //MARK: - Enums
     enum BookList: Int {
@@ -45,20 +47,31 @@ class DetailBookTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = book?.titleLabelText
+        setupTableViewBackgroundView()
         fetchBookInfo()
         tableView.reloadData()
         getComments()
+        getBookStatus()
+    }
+    
+    func setupTableViewBackgroundView() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+        tableView.backgroundView = activityIndicator
     }
     
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        if infoBook.isEmpty {
+            return 0
+        }
         return Sections.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         if section == Sections.Comments.rawValue {
             return comments.count
         }
@@ -77,6 +90,12 @@ class DetailBookTableViewController: UITableViewController {
                     }
                 }
                 
+                if cell.addBookStackView.subviews.count != 0 {
+                    cell.addBookStackView.subviews.forEach { addBookView in
+                        cell.addBookStackView.removeArrangedSubview(addBookView)
+                        addBookView.removeFromSuperview()
+                    }
+                }
                 createAddBookButton(for: cell)
                 guard let authorNames = book?.authorNames else {
                     return cell
@@ -91,6 +110,7 @@ class DetailBookTableViewController: UITableViewController {
                 
                 guard let url = imageID else { return cell }
                 
+                cell.coverImage.image = UIImage(systemName: "book.closed")
                 let request = AF.request(url, method: .get)
                 request.responseImage { response in
                     if let image = response.value {
@@ -235,30 +255,41 @@ class DetailBookTableViewController: UITableViewController {
     
     func createAddBookButton(for cell: HeaderTableViewCell) {
         var config = UIButton.Configuration.filled()
-        config.title = "Add Book"
         config.cornerStyle = .capsule
         config.baseBackgroundColor = .systemPurple
+        
+        if stateBook != 0 {
+            config.title = "Added"
+        } else {
+            config.title = "Add Book"
+        }
         
         let button = UIButton()
         button.showsMenuAsPrimaryAction = true
         button.configuration = config
+    
         
         let TBRAction = UIAction(title: "TBR", handler: { [weak self] action in
             self?.addBook(list: .tbr)
             self?.addAuthor()
+            config.title = "Added"
+            button.configuration = config
         })
         
         let CRAction = UIAction(title: "Currently reading", handler: { [weak self] action in
             self?.addBook(list: .reading)
             self?.addAuthor()
+            config.title = "Added"
+            button.configuration = config
         })
         
         let ReadAction = UIAction(title: "Read", handler: { [weak self] action in
             self?.addBook(list: .read)
             self?.addAuthor()
+            config.title = "Added"
+            button.configuration = config
         })
         
-//        action.image = UIImage(systemName: "checkmark")
         
         button.menu = UIMenu(children: [
             TBRAction,
@@ -268,6 +299,26 @@ class DetailBookTableViewController: UITableViewController {
         
         button.frame = CGRect(x: cell.addBookStackView.frame.midX/2, y: cell.addBookStackView.frame.midY/2, width: 100, height: 25)
         cell.addBookStackView.addSubview(button)
+    }
+    
+    func getBookStatus() {
+        guard let userId = user?.uid as? String,
+              let bookId = (book?.key as? NSString)?.lastPathComponent else {
+            return
+        }
+        database.collection("users").document(userId).collection("books").getDocuments { (querySnapshot, err) in
+            guard err == nil else {
+                print("Error getting documents: \(String(describing: err))")
+                return
+            }
+            
+            querySnapshot?.documents.forEach({ document in
+                if document.documentID == bookId {
+                    self.stateBook = document.data()["book_state"] as! Int
+                }
+            })
+            self.tableView.reloadData()
+        }
     }
     
     func addAuthor() {
@@ -366,6 +417,8 @@ extension DetailBookTableViewController {
                       let info = response.value else {
                     return
                 }
+                
+                self.activityIndicator.stopAnimating()
                 
                 self.infoBook = info.docs
                 self.tableView.reloadData()

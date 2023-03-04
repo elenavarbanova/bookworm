@@ -9,7 +9,7 @@ import UIKit
 
 class HeaderTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var addBookStackView: UIView!
+    @IBOutlet weak var addBookStackView: UIStackView!
     @IBOutlet weak var coverImage: UIImageView!
     @IBOutlet weak var authorBookStackView: UIStackView!
 }
