@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-class SearchResultsTableViewController: UITableViewController {
+class SearchTableViewController: UITableViewController {
 
     let searchController = UISearchController(searchResultsController: nil)
     var items = [Displayable]()
@@ -102,7 +102,7 @@ class SearchResultsTableViewController: UITableViewController {
     }
 }
 
-extension SearchResultsTableViewController: UISearchBarDelegate {
+extension SearchTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         items.removeAll()
 

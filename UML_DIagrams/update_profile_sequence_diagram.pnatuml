@@ -1,0 +1,26 @@
+@startuml
+
+actor User
+participant App as "Bookworm"
+
+User -> App: Change profile\nemail/password
+App -> App: Verify credentials
+App -> Firebase: Change email/password
+
+alt Success
+
+    Firebase --> App: Successful updating profile
+    User <- App: Update UI
+   
+else Reauthentication error
+
+    Firebase --> App: Error updating profile
+    App -> Firebase: Reauthenticate user
+    App <-- Firebase
+    App -> Firebase: Change email/password
+    App <-- Firebase
+    User <- App: Update UI
+
+end
+
+@enduml

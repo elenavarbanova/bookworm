@@ -2,7 +2,6 @@
 
 actor User
 participant App as "Bookworm"
-participant API as "Open Library API"
 
 User -> App: Create profile with\nemail and password
 App -> App: Verify credentials

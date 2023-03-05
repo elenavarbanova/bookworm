@@ -340,8 +340,8 @@ class ProfileTableViewController: UITableViewController {
                 print(result!)
                 return
             }
-            self.updateEmail(for: email)
-        }
+        self.updateEmail(for: email)
+    }
         
        
     }
