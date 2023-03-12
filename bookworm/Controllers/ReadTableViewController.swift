@@ -16,6 +16,8 @@ class ReadTableViewController: UITableViewController {
     let backgroundViewLabel = UILabel(frame: .zero)
     var bookIds = [String()]
     var readBooks = [String: Displayable]()
+    var database = Firestore.firestore()
+    var user = Auth.auth().currentUser
     
     enum BookList: Int {
     case tbr = 1
@@ -36,6 +38,29 @@ class ReadTableViewController: UITableViewController {
         return readBooks.count
     }
 
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        var bookId = bookIds[indexPath.row]
+        
+        guard let userId = user?.uid as? String else {
+            return nil
+        }
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete book") { [weak self] (action, view, completionHandler) in
+            
+            self?.database.collection("users").document("\(userId)").collection("books").document("\(bookId)").delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+                completionHandler(true)
+                self?.tableView.reloadData()
+            }
+        }
+        deleteAction.backgroundColor = .systemRed
+        
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfiguration
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath) as! BookTableViewCell
