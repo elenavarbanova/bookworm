@@ -229,11 +229,12 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="Comments" destination="d1L-hL-GhG" id="XU6-QV-eUk"/>
                                     <outlet property="addBookStackView" destination="LpD-os-zyO" id="1xa-UH-XGk"/>
                                     <outlet property="authorBookStackView" destination="z16-Y5-Enf" id="Jwi-ru-rur"/>
+                                    <outlet property="comments" destination="d1L-hL-GhG" id="XU6-QV-eUk"/>
                                     <outlet property="coverImage" destination="OlT-sQ-kT7" id="THS-x1-SeA"/>
                                     <outlet property="overallRating" destination="yP3-QU-mxa" id="b8m-2k-PHn"/>
+                                    <outlet property="ratingView" destination="94j-TZ-Ej5" id="Vwt-1x-LN7"/>
                                     <outlet property="starRatingView" destination="IKv-OE-2cc" id="LHE-zv-ose"/>
                                 </connections>
                             </tableViewCell>

@@ -117,9 +117,13 @@ class DetailBookTableViewController: UITableViewController {
                 }
                 createAddBookButton(for: cell)
                 
-                cell.overallRating.text = "\(overallRating)"
-                cell.starRatingView.rating = overallRating
-                cell.Comments.text = "(\(comments.count))"
+                if overallRating == 0 {
+                    cell.ratingView.isHidden = true
+                } else {
+                    cell.overallRating.text = "\(overallRating)"
+                    cell.starRatingView.rating = overallRating
+                    cell.comments.text = "(\(comments.count))"
+                }
                 
                 guard let authorNames = book?.authorNames else {
                     return cell

@@ -1,0 +1,30 @@
+@startuml
+actor User
+participant App as "Bookworm"
+
+User -> App: Review book
+
+App -> Firebase: Get user review
+App <-- Firebase:
+
+alt New rating
+
+   App -> Firebase: Save review + rating
+   App -> Firebase: Update average stars
+
+   note over App, Firebase: Two updates happen as single\nFirebase transaction
+   App <-- Firebase
+
+else Existing rating
+   App -> Firebase: Update review + rating
+   App -> Firebase: Adjust average stars\nby rating difference
+
+   note over App, Firebase: Two updates happen as single\nFirebase transaction
+   App <-- Firebase
+end
+
+note left: The star rating for book\nis stored precalculated because\nFirebase does not support\naggregation in queries
+
+App -> User: Displaying new\nrating and comment
+
+@enduml

@@ -17,8 +17,9 @@ class HeaderTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet weak var authorBookStackView: UIStackView!
+    @IBOutlet weak var ratingView: UIStackView!
     @IBOutlet weak var overallRating: UILabel!
-    @IBOutlet weak var starRatingView: CosmosView! 
-    @IBOutlet weak var Comments: UILabel!
+    @IBOutlet weak var starRatingView: CosmosView!
+    @IBOutlet weak var comments: UILabel!
     
 }
