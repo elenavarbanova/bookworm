@@ -52,6 +52,7 @@
 		F383C138294FBB9900D0C766 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F383C137294FBB9900D0C766 /* FirebaseStorage */; };
 		F383C13A294FBB9900D0C766 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = F383C139294FBB9900D0C766 /* FirebaseStorageCombine-Community */; };
 		F394211A299AA9ED00516006 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = F3942119299AA9ED00516006 /* Cosmos */; };
+		F3A7EFDA29BDEECB00CE7233 /* Nickname.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A7EFD929BDEECB00CE7233 /* Nickname.swift */; };
 		F3ADE20229A5FF58009C5E6F /* SubjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ADE20129A5FF58009C5E6F /* SubjectTableViewController.swift */; };
 		F3B290FB2963445800934701 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B290FA2963445700934701 /* WelcomeViewController.swift */; };
 		F3B290FD29635A9100934701 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B290FC29635A9100934701 /* SignInViewController.swift */; };
@@ -68,7 +69,7 @@
 		F3EBFBED29A2B39D00AA55A4 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBFBEC29A2B39D00AA55A4 /* BookCollectionViewCell.swift */; };
 		F3EBFBEF29A2B3CA00AA55A4 /* MoreBooksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBFBEE29A2B3CA00AA55A4 /* MoreBooksTableViewCell.swift */; };
 		F3EBFBF529A3E84000AA55A4 /* DetailBookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBFBF429A3E84000AA55A4 /* DetailBookTableViewController.swift */; };
-		F3EBFBF729A4068400AA55A4 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBFBF629A4068400AA55A4 /* Comment.swift */; };
+		F3EBFBF729A4068400AA55A4 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBFBF629A4068400AA55A4 /* Review.swift */; };
 		F3EBFBFB29A5E85A00AA55A4 /* DetailAuthorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBFBFA29A5E85A00AA55A4 /* DetailAuthorTableViewController.swift */; };
 		F3EC384729A296CF00093161 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC384629A296CF00093161 /* HeaderTableViewCell.swift */; };
 		F3EC384929A2981300093161 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC384829A2981300093161 /* DetailsTableViewCell.swift */; };
@@ -101,6 +102,7 @@
 		F383C0FA294FB77500D0C766 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F383C0FC294FB77500D0C766 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F383C102294FBA7400D0C766 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F3A7EFD929BDEECB00CE7233 /* Nickname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Nickname.swift; path = bookworm/Structs/Nickname.swift; sourceTree = SOURCE_ROOT; };
 		F3ADE20129A5FF58009C5E6F /* SubjectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableViewController.swift; sourceTree = "<group>"; };
 		F3B290FA2963445700934701 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F3B290FC29635A9100934701 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +117,7 @@
 		F3EBFBEC29A2B39D00AA55A4 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3EBFBEE29A2B3CA00AA55A4 /* MoreBooksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreBooksTableViewCell.swift; sourceTree = "<group>"; };
 		F3EBFBF429A3E84000AA55A4 /* DetailBookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBookTableViewController.swift; sourceTree = "<group>"; };
-		F3EBFBF629A4068400AA55A4 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		F3EBFBF629A4068400AA55A4 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		F3EBFBFA29A5E85A00AA55A4 /* DetailAuthorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAuthorTableViewController.swift; sourceTree = "<group>"; };
 		F3EC384629A296CF00093161 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F3EC384829A2981300093161 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -254,7 +256,8 @@
 				F330A92C298C52AC006C8145 /* DescriptionBook.swift */,
 				F330A9322990096C006C8145 /* Author.swift */,
 				F330A93429901E07006C8145 /* AuthorWorks.swift */,
-				F3EBFBF629A4068400AA55A4 /* Comment.swift */,
+				F3EBFBF629A4068400AA55A4 /* Review.swift */,
+				F3A7EFD929BDEECB00CE7233 /* Nickname.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -371,11 +374,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3EC385729A2A32A00093161 /* AlternativeNamesTableViewCell.swift in Sources */,
+				F3A7EFDA29BDEECB00CE7233 /* Nickname.swift in Sources */,
 				F330A9332990096C006C8145 /* Author.swift in Sources */,
 				F330A93529901E07006C8145 /* AuthorWorks.swift in Sources */,
 				F330A92D298C52AC006C8145 /* DescriptionBook.swift in Sources */,
 				F3DA25BE2978989000EAFB8A /* Book.swift in Sources */,
-				F3EBFBF729A4068400AA55A4 /* Comment.swift in Sources */,
+				F3EBFBF729A4068400AA55A4 /* Review.swift in Sources */,
 				F3B290FD29635A9100934701 /* SignInViewController.swift in Sources */,
 				F3E3198E2981BB0F0070E0AA /* ProfileTableViewController.swift in Sources */,
 				F3E319942986EB400070E0AA /* ResultBooks.swift in Sources */,

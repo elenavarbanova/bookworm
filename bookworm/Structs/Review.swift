@@ -9,13 +9,13 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 
-struct Comment: Decodable {
-    var userNickname: String
+struct Review: Decodable {
+    var userId: String
     var comment: String?
     var rating: Int?
     var date: Date
     init(aDoc: DocumentSnapshot) {
-        self.userNickname = aDoc.get("user_nickname") as? String ?? "Unknown"
+        self.userId = aDoc.get("user_id") as? String ?? "Unknown"
         self.comment = aDoc.get("comment") as? String
         self.rating = aDoc.get("rating") as? Int
         let ts = aDoc.get("date") as? Timestamp

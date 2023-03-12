@@ -51,6 +51,17 @@ class DetailAuthorTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == Sections.Bio.rawValue {
+            return "Biography"
+        } else if section == Sections.AlternativeNames.rawValue {
+            return "Alternative names"
+        } else if section == Sections.MoreBooks.rawValue {
+            return "More books by the author:"
+        }
+        return ""
+    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == Sections.MoreBooks.rawValue {

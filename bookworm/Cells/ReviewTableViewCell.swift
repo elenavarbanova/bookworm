@@ -8,12 +8,68 @@
 import UIKit
 import Cosmos
 
-class ReviewTableViewCell: UITableViewCell {
-    @IBOutlet weak var commentTextField: UITextField!
+class ReviewTableViewCell: UITableViewCell, UITextViewDelegate {
+    @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var starRatingView: CosmosView! {
         didSet {
             configure()
         }
+    }
+    
+    var textChanged: ((String) -> Void)?
+        
+    var placeholderShown = true {
+        didSet {
+            if placeholderShown {
+                commentTextView.text = "Type your thoughts here..."
+                commentTextView.textColor = .systemGray3
+            } else {
+                commentTextView.text = ""
+                commentTextView.textColor = .label
+            }
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        placeholderShown = true
+        commentTextView.delegate = self
+        commentTextView.layer.cornerRadius = 5
+        commentTextView.layer.borderWidth = 1/3
+        commentTextView.layer.borderColor = UIColor.gray.cgColor
+        commentTextView.clipsToBounds = true
+    }
+        
+    func textChanged(action: @escaping (String) -> Void) {
+        self.textChanged = action
+    }
+        
+    func textViewDidChange(_ textView: UITextView) {
+        if !placeholderShown {
+            textChanged?(textView.text)
+        }
+        if textView.text.count == 0 {
+            placeholderShown = true
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if placeholderShown {
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        }
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if placeholderShown {
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if placeholderShown {
+            placeholderShown = false
+        }
+        return true
     }
     
     func configure() {
@@ -35,5 +91,11 @@ class ReviewTableViewCell: UITableViewCell {
         starRatingView.settings.emptyImage = empty
         starRatingView.settings.filledImage = filled
         
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        placeholderShown = true
+        textChanged = nil
     }
 }

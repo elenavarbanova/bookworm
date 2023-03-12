@@ -94,7 +94,7 @@ class RegisterViewController: UIViewController {
                     guard let userId = Auth.auth().currentUser?.uid as? String else {
                         return
                     }
-                    database.collection("users").document("\(userId)").setData([:]) { err in
+                    database.collection("users").document("\(userId)").setData(["nickname":nickname]) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
                         } else {

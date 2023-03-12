@@ -22,11 +22,14 @@ class DetailBookTableViewController: UITableViewController {
     var descriptionBook = String()
     var authors: [String: String] = [:]
     var database = Firestore.firestore()
-    var comments = [Comment]()
+    var reviews = [Review]()
+    var comments = [Review]()
     var stars = 0.0
+    var textComment = String()
     var user = Auth.auth().currentUser
     let activityIndicator = UIActivityIndicatorView(frame: .zero)
     var stateBook = 0
+    var nicknames: [String: String] = [:]
     
     //MARK: - Enums
     enum BookList: Int {
@@ -50,8 +53,9 @@ class DetailBookTableViewController: UITableViewController {
         setupTableViewBackgroundView()
         fetchBookInfo()
         tableView.reloadData()
-        getComments()
+        getReviews()
         getBookStatus()
+        getNicknames()
     }
     
     func setupTableViewBackgroundView() {
@@ -76,6 +80,19 @@ class DetailBookTableViewController: UITableViewController {
             return comments.count
         }
         return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == Sections.Description.rawValue {
+            return "Description"
+        } else if section == Sections.Subjects.rawValue {
+            return "Subjects"
+        } else if section == Sections.Review.rawValue {
+            return "Leave a review"
+        } else if section == Sections.Comments.rawValue {
+            return "Comments"
+        }
+        return ""
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,11 +182,21 @@ class DetailBookTableViewController: UITableViewController {
                 cell.starRatingView.didFinishTouchingCosmos = { rating in
                     self.stars = rating
                 }
+                cell.textChanged {[weak tableView] (newText: String) in
+                    self.textComment = newText.trimmingCharacters(in: .whitespacesAndNewlines)
+                 }
+                if textComment.count > 0 {
+                    cell.commentTextView.text = textComment
+                }
                 return cell
             } else if indexPath.section == Sections.Comments.rawValue{
                 let comment = comments[indexPath.row]
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Comments", for: indexPath) as! CommentsTableViewCell
-                cell.userLabel.text = comment.userNickname
+                if comment.userId == "Unknown" {
+                    cell.userLabel.text = "Unknown author"
+                } else {
+                    cell.userLabel.text = nicknames[comment.userId]
+                }
                 cell.commentLabel.text = comment.comment
                 
                 let formatter = DateComponentsFormatter()
@@ -209,20 +236,44 @@ class DetailBookTableViewController: UITableViewController {
     
     
     //MARK: - Get comments
-    func getComments() {
+    func getReviews() {
         guard let bookId = (book?.key as? NSString)?.lastPathComponent else {
             return
         }
-        database.collection("books").document(bookId).collection("reviews").addSnapshotListener { [weak self] (querySnapshot, error) in
+        database.collection("books").document(bookId).collection("reviews").order(by: "date", descending: true).addSnapshotListener { [weak self] (querySnapshot, error) in
             guard error == nil else {
                 print("Error getting documents: \(String(describing: error))")
                 return
             }
+            self?.reviews.removeAll()
             self?.comments.removeAll()
             for document in querySnapshot!.documents {
-                let comment = Comment(aDoc: document)
-                self?.comments.append(comment)
+                let review = Review(aDoc: document)
+                self?.reviews.append(review)
+                guard let comment = review.comment else {
+                    continue
+                }
+               if !comment.isEmpty {
+                   self?.comments.append(review)
+                }
             }
+            self?.tableView.reloadData()
+        }
+    }
+    
+    //MARK: - Get user nickname
+    func getNicknames() {
+        database.collection("users").addSnapshotListener { [weak self] (querySnapshot, error) in
+            guard error == nil else {
+                print("Error getting documents: \(String(describing: error))")
+                return
+            }
+            self?.nicknames.removeAll()
+            for document in querySnapshot!.documents {
+                let nickname = Nickname(aDoc: document)
+                self?.nicknames[document.documentID] = nickname.userNickname
+            }
+            self?.tableView.reloadData()
         }
     }
     
@@ -379,17 +430,15 @@ class DetailBookTableViewController: UITableViewController {
         let indexPath = IndexPath(row: 0, section: Sections.Review.rawValue)
         let cell = tableView.cellForRow(at: indexPath) as? ReviewTableViewCell
         
-        guard let comment = cell?.commentTextField.text?.trimmingCharacters(in: .whitespaces),
-              let userNickname = user?.displayName as? String,
-              let userId = user?.uid as? String,
+        guard let userId = user?.uid as? String,
               let bookId = (book?.key as? NSString)?.lastPathComponent else {
             return
         }
 
         self.database.collection("books").document("\(bookId)").collection("reviews").document("\(userId)").setData([
-            "comment":comment,
+            "comment":textComment,
             "date":dateNow,
-            "user_nickname":userNickname,
+            "user_id":userId,
             "rating":stars
         ]) { err in
             if let err = err {
@@ -399,7 +448,7 @@ class DetailBookTableViewController: UITableViewController {
             }
         }
         cell?.starRatingView.rating = 0
-        cell?.commentTextField.text?.removeAll()
+        cell?.commentTextView.text?.removeAll()
     }
 }
 
