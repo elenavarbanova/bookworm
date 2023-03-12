@@ -14,8 +14,8 @@ import FirebaseFirestore
 
 class DetailBookTableViewController: UITableViewController {
     
-
-    //MARK: 
+    
+    //MARK:
     var imageID: String?
     var book: Displayable? = nil
     var infoBook = [InfoBook]()
@@ -24,6 +24,7 @@ class DetailBookTableViewController: UITableViewController {
     var database = Firestore.firestore()
     var reviews = [Review]()
     var comments = [Review]()
+    var overallRating = 0.0
     var stars = 0.0
     var textComment = String()
     var user = Auth.auth().currentUser
@@ -33,9 +34,9 @@ class DetailBookTableViewController: UITableViewController {
     
     //MARK: - Enums
     enum BookList: Int {
-    case tbr = 1
-    case reading = 2
-    case read = 3
+        case tbr = 1
+        case reading = 2
+        case read = 3
     }
     
     enum Sections: Int, CaseIterable {
@@ -56,6 +57,7 @@ class DetailBookTableViewController: UITableViewController {
         getReviews()
         getBookStatus()
         getNicknames()
+        getOverallRating()
     }
     
     func setupTableViewBackgroundView() {
@@ -65,16 +67,16 @@ class DetailBookTableViewController: UITableViewController {
         tableView.backgroundView = activityIndicator
     }
     
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         if infoBook.isEmpty {
             return 0
         }
         return Sections.allCases.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == Sections.Comments.rawValue {
             return comments.count
@@ -94,7 +96,7 @@ class DetailBookTableViewController: UITableViewController {
         }
         return ""
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if !infoBook.isEmpty {
             if indexPath.section == Sections.Header.rawValue {
@@ -114,6 +116,11 @@ class DetailBookTableViewController: UITableViewController {
                     }
                 }
                 createAddBookButton(for: cell)
+                
+                cell.overallRating.text = "\(overallRating)"
+                cell.starRatingView.rating = overallRating
+                cell.Comments.text = "(\(comments.count))"
+                
                 guard let authorNames = book?.authorNames else {
                     return cell
                 }
@@ -159,7 +166,7 @@ class DetailBookTableViewController: UITableViewController {
             } else if indexPath.section == Sections.Subjects.rawValue {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Subjects", for: indexPath) as! SubjectsTableViewCell
                 
-
+                
                 guard let subjects = infoBook[0].subject else {
                     return cell
                 }
@@ -184,7 +191,7 @@ class DetailBookTableViewController: UITableViewController {
                 }
                 cell.textChanged {[weak tableView] (newText: String) in
                     self.textComment = newText.trimmingCharacters(in: .whitespacesAndNewlines)
-                 }
+                }
                 if textComment.count > 0 {
                     cell.commentTextView.text = textComment
                 }
@@ -212,14 +219,14 @@ class DetailBookTableViewController: UITableViewController {
     }
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == "SubjectSegue",
-              let destination = segue.destination as? SubjectTableViewController,
-              let button = sender as? UIButton,
-              let subject = button.currentTitle {
+           let destination = segue.destination as? SubjectTableViewController,
+           let button = sender as? UIButton,
+           let subject = button.currentTitle {
             destination.subject = subject
         } else {
             
@@ -253,8 +260,8 @@ class DetailBookTableViewController: UITableViewController {
                 guard let comment = review.comment else {
                     continue
                 }
-               if !comment.isEmpty {
-                   self?.comments.append(review)
+                if !comment.isEmpty {
+                    self?.comments.append(review)
                 }
             }
             self?.tableView.reloadData()
@@ -396,6 +403,26 @@ class DetailBookTableViewController: UITableViewController {
         }
     }
     
+    func getOverallRating() {
+        guard let bookId = (book?.key as? NSString)?.lastPathComponent else {
+            return
+        }
+        database.collection("books").document("\(bookId)").addSnapshotListener { [weak self] (querySnapshot, error) in
+            guard let document = querySnapshot else {
+                print("Error getting document: \(String(describing: error))")
+                return
+            }
+            
+            guard let docData = document.data() else {
+                print("Document data was empty.")
+                return
+            }
+            
+            self?.overallRating = docData["average_rating"] as! Double
+            self?.tableView.reloadData()
+        }
+    }
+    
     //MARK: - Add book to user's books
     func addBook(list: BookList) {
         guard let userId = user?.uid as? String,
@@ -434,21 +461,61 @@ class DetailBookTableViewController: UITableViewController {
               let bookId = (book?.key as? NSString)?.lastPathComponent else {
             return
         }
-
-        self.database.collection("books").document("\(bookId)").collection("reviews").document("\(userId)").setData([
-            "comment":textComment,
-            "date":dateNow,
-            "user_id":userId,
-            "rating":stars
-        ]) { err in
-            if let err = err {
-                print("Error writing document: \(err)")
+        
+        let ratingRef = self.database.collection("books").document("\(bookId)").collection("reviews").document("\(userId)")
+        ratingRef.getDocument { (document, error) in
+            var addRating = Int()
+            var newRating = Double()
+            if let document = document, document.exists {
+                let review = Review(aDoc: document)
+                guard let rating = review.rating else {
+                    return
+                }
+                newRating = self.stars - rating
             } else {
-                print("Document successfully written!")
+                newRating = self.stars
+                addRating = 1
             }
+            let bookRef = self.database.collection("books").document("\(bookId)")
+            self.database.runTransaction { (transaction, errorPointer) -> Any? in
+                do {
+                    var bookDocument = try transaction.getDocument(bookRef).data()
+                    if bookDocument == nil {
+                        bookRef.setData([:])
+                        bookDocument = try transaction.getDocument(bookRef).data()
+                    }
+                    
+                    let numRatings = bookDocument?["number_ratings"] as? Int ?? 0
+                    let avgRating = bookDocument?["average_rating"] as? Double ?? 0
+
+                    let newNumRatings = numRatings + addRating
+                    
+                    let oldRatingTotal = avgRating * Double(numRatings)
+                    
+                    let newAvgRating = (oldRatingTotal + newRating) / Double(newNumRatings)
+                    bookDocument?["number_ratings"] = newNumRatings
+                    bookDocument?["average_rating"] = newAvgRating
+                    if let document = bookDocument {
+                        transaction.setData(document, forDocument: bookRef)
+                    }
+                    transaction.setData([
+                        "comment":self.textComment,
+                        "date":dateNow,
+                        "user_id":userId,
+                        "rating":self.stars
+                        ], forDocument: ratingRef)
+                } catch {
+                    print("Error writing document: \(error)")
+                }
+                return nil
+            } completion: { (object, err) in
+                if let err = err {
+                    print("Error: \(err)")
+                }
+            }
+            cell?.starRatingView.rating = 0
+            cell?.commentTextView.text?.removeAll()
         }
-        cell?.starRatingView.rating = 0
-        cell?.commentTextView.text?.removeAll()
     }
 }
 

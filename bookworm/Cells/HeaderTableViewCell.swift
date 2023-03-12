@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class HeaderTableViewCell: UITableViewCell {
     
@@ -16,4 +17,8 @@ class HeaderTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet weak var authorBookStackView: UIStackView!
+    @IBOutlet weak var overallRating: UILabel!
+    @IBOutlet weak var starRatingView: CosmosView! 
+    @IBOutlet weak var Comments: UILabel!
+    
 }
