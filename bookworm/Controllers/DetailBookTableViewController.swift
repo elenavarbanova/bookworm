@@ -152,7 +152,12 @@ class DetailBookTableViewController: UITableViewController {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Details", for: indexPath) as! DetailsTableViewCell
                 let year = "\(String(describing: infoBook[0].firstPublishYear))"
                 cell.publishedLabel.text = year
-                let pages = "\(String(describing: infoBook[0].numberOfPagesMedian!))" // crash, fix with if let
+                var pages = String()
+                if let numPages = infoBook[0].numberOfPagesMedian {
+                  pages = String(numPages)
+                } else {
+                    pages = "Unknown"
+                }
                 cell.pagesLabel.text = pages
                 let editions = "\(String(describing: infoBook[0].editionCount))"
                 cell.editionsLabel.text = editions
@@ -183,6 +188,7 @@ class DetailBookTableViewController: UITableViewController {
                         button.removeFromSuperview()
                     }
                 }
+                
                 
                 for subject in 0..<countSubjects {
                     createSubjectButton(for: subjects[subject], for: cell)
